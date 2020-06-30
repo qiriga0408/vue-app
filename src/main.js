@@ -4,8 +4,8 @@ import router from './router'
 
 import store from './store'
 
-import "./rem"
-import './reset.css'
+import "./util/rem"
+import './css/reset.css'
 
 import  'swiper/css/swiper.min.css'
 
