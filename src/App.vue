@@ -46,10 +46,10 @@ export default {
         align-items: center;
         justify-content: space-around;
         li{
-            width: 25%;
+            width: 20%;
             a{
                 display: block;
-                font-size: 0.2rem;
+                font-size: 0.18rem;
                 text-align: center;
                 line-height: 0.6rem;
                 color: black;

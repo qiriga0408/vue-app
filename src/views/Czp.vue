@@ -1,7 +1,7 @@
 <template>
-    <div id="shopping">
+    <div id="my">
         <div class="content">
-          购物车内容
+          陈泽平我的内容
         </div>
         <Footer></Footer>
     </div>
@@ -9,7 +9,7 @@
 <script>
 import Footer from "@/components/footer"
 export default {
-    name:"Shopping",
+    name:"Czp",
         components:{Footer},
     data(){
       return{

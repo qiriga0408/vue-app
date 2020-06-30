@@ -10,7 +10,7 @@
 <script>
 import Footer from "@/components/footer"
 export default {
-    name:"Shouye",
+    name:"Xl",
      components:{Footer},
     data(){
         return{

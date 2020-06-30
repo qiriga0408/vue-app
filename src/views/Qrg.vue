@@ -1,7 +1,7 @@
 <template>
     <div id="fenlei">
         <div class="content">
-          分类内容
+         其日嘎写的练习内容
         </div>
         <Footer></Footer>
     </div>
@@ -9,7 +9,7 @@
 <script>
 import Footer from "@/components/footer"
 export default {
-    name:"Fenlei",
+    name:"Qrg",
     components:{Footer},
     data(){
       return{

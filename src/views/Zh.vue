@@ -1,7 +1,7 @@
 <template>
-    <div id="my">
+    <div id="fenlei">
         <div class="content">
-          我的内容
+          张豪写的课程内容
         </div>
         <Footer></Footer>
     </div>
@@ -9,8 +9,8 @@
 <script>
 import Footer from "@/components/footer"
 export default {
-    name:"My",
-        components:{Footer},
+    name:"Zh",
+    components:{Footer},
     data(){
       return{
 

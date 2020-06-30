@@ -1,38 +1,44 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Shouye from '@/views/shouye'
-import Fenlei from '@/views/fenlei'
-import Shopping from '@/views/shopping'
-import My from '@/views/my'
+import Xl from '@/views/Xl'
+import Zh from '@/views/Zh'
+import Sxl from '@/views/Sxl'
+import Qrg from '@/views/Qrg'
+import Czp from '@/views/Czp'
 
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/shouye',
-    name: 'Shouye',
-    component: Shouye
+    path: '/Xl',
+    name: 'Xl',
+    component: Xl
   },
   {
-    path: '/fenlei',
-    name: 'Fenlei',
-    component: Fenlei
+    path: '/Zh',
+    name: 'Zh',
+    component: Zh
   },
   {
-    path: '/shopping',
-    name: 'Shopping',
-    component: Shopping
+    path: '/Sxl',
+    name: 'Sxl',
+    component: Sxl
   },
   {
-    path: '/my',
-    name: 'My',
-    component: My
+    path: '/Czp',
+    name: 'Czp',
+    component: Czp
   },
   {
     path:"/",
-    redirect:"/shouye"
+    redirect:"/Xl"
   },
+  {
+    path:"/Qrg",
+    name:'Qrg',
+    component:Qrg
+  }
   // {
   //   path: '/about',
   //   name: 'About',

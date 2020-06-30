@@ -3,16 +3,19 @@
         <footer>
             <ul>
                 <li>
-                   <router-link to="/shouye">首页</router-link> 
+                   <router-link to="/Xl">首页</router-link> 
                 </li>
                 <li>
-                    <router-link to="/fenlei">分类</router-link>
+                    <router-link to="/Zh">课程</router-link>
                 </li>
                 <li>  
-                <router-link to="/shopping">购物车</router-link>
+                <router-link to="/Sxl">约课记录</router-link>
+                </li>
+                 <li>  
+                    <router-link to="/Qrg">练习</router-link>
                 </li>
                 <li>
-                    <router-link to="/my">我的</router-link>
+                    <router-link to="/Czp">我的</router-link>
                 </li>
             </ul>
         </footer>
