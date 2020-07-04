@@ -8,10 +8,15 @@ import "./util/rem"
 
 import './css/reset.css'
 
-import  'swiper/css/swiper.min.css'
+import 'swiper/css/swiper.min.css'
 
 import axios from 'axios'
-Vue.prototype.$axios=axios
+
+
+import Iscroll from 'iscroll'
+
+
+Vue.prototype.$axios = axios
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -25,7 +30,7 @@ Vue.use(Vant);
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
