@@ -16,6 +16,10 @@ import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
 
+//陈泽平的二级路由
+import Czp_E1 from "@/views/Czp/Czp_E1";
+import Czp_E2 from "@/views/Czp/Czp_E2";
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -37,7 +41,23 @@ Vue.use(VueRouter)
   {
     path: '/Czp',
     name: 'Czp',
-    component: Czp
+    component: Czp,
+    children:[
+      {
+        path: '/Czp/Czp_E1',
+        name: 'Czp_E1',
+        component: Czp_E1,
+      },
+      {
+        path: '/',
+        redirect:'/Czp/Czp_E1'
+      },
+      {
+        path: '/Czp/Czp_E2',
+        name: 'Czp_E2',
+        component: Czp_E2
+      },
+    ]
   },
   {
     path:"/",
