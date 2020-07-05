@@ -5,6 +5,8 @@ import Zh from '@/views/Zh'
 import Sxl from '@/views/Sxl'
 import Qrg from '@/views/Qrg'
 import Czp from '@/views/Czp'
+
+//其日嘎的路由配置
 import qrgSite from '@/views/Qrg/qrgSite'
 import qrgBank from '@/views/Qrg/qrgSite/qrgBank'
 import qrgBankOne from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankOne'
@@ -15,6 +17,7 @@ import qrgBankFive from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankFive'
 import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
+import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 
 //陈泽平的二级路由
 import Czp_E1 from "@/views/Czp/Czp_E1";
@@ -114,6 +117,11 @@ const routes = [{
         path: '/qrgPractice',
         name: 'qrgPractice',
         component: qrgPractice
+    },
+    {
+      path:'/qrgPracticeSerach',
+      name:'qrgPracticeSerach',
+      component:qrgPracticeSerach
     },
     {
         path: '/qrgBank',
