@@ -5,7 +5,8 @@ import Zh from '@/views/Zh'
 import Sxl from '@/views/Sxl'
 import Qrg from '@/views/Qrg'
 import Czp from '@/views/Czp'
-
+import Zhedit from "@/views/zhedit"
+import Zhseach from "@/views/zhseach"
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,16 @@ Vue.use(VueRouter)
     path: '/Zh',
     name: 'Zh',
     component: Zh
+  },
+  {
+    path: '/zhedit',
+    name: 'Zhedit',
+    component: Zhedit
+  },
+  {
+    path: '/zhseach',
+    name: 'Zhseach',
+    component: Zhseach
   },
   {
     path: '/Sxl',
