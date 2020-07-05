@@ -6,14 +6,14 @@
         <div class="content">
             <div class="content-one">
                 <div class="content-one-y">
-                    <div class="content-one-y-img">
+                    <router-link tag="div" :to="{path:'/qrgSite'}" class="content-one-y-img">
                         <img src="/qrgImg/qrg-1.png" alt="">
                         <p>考点专练</p>
-                    </div>
-                    <div class="content-one-y-img">
+                    </router-link>
+                    <router-link tag="div" :to="{path:'/qrgPractice'}" class="content-one-y-img">
                         <img src="/qrgImg/qrg-2.png" alt="">
                         <p>套卷练习</p>
-                    </div>
+                    </router-link>
                     <div class="content-one-y-img">
                         <img src="/qrgImg/qrg-3.png" alt="">
                         <p>仿真模考</p>
