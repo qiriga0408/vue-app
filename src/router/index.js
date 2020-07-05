@@ -6,7 +6,11 @@ import Sxl from '@/views/Sxl'
 import Qrg from '@/views/Qrg'
 import Czp from '@/views/Czp'
 
-//其日嘎的路由配置
+
+
+Vue.use(VueRouter)
+
+  //其日嘎的路由配置
 import qrgSite from '@/views/Qrg/qrgSite'
 import qrgBank from '@/views/Qrg/qrgSite/qrgBank'
 import qrgBankOne from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankOne'
@@ -18,10 +22,15 @@ import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
 import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
+// 张豪的路由
+import Zhedit from "@/views/zh/zhedit"
+import Zhseach from "@/views/zh/zhseach"
 
 //陈泽平的二级路由
 import Czp_E1 from "@/views/Czp/Czp_E1";
 import Czp_E2 from "@/views/Czp/Czp_E2";
+import Czp_E3 from "@/views/Czp/Czp_E3";
+import Czp_E4 from "@/views/Czp/Czp_E4";
 
 
 //孙晓亮的二级路由
@@ -31,7 +40,8 @@ import Sxlysk from "../views/sxl/sxlysk.vue"
 
 
 
-Vue.use(VueRouter)
+
+
 
 
 // {
@@ -52,6 +62,16 @@ const routes = [{
         name: 'Zh',
         component: Zh
     },
+    {
+        path: '/zhedit',
+        name: 'Zhedit',
+        component: Zhedit
+      },
+      {
+        path: '/zhseach',
+        name: 'Zhseach',
+        component: Zhseach
+      },
     {
         path: '/Sxl',
         name: 'Sxl',
@@ -97,6 +117,16 @@ const routes = [{
                 name: 'Czp_E2',
                 component: Czp_E2
             },
+			{
+			    path: '/Czp/Czp_E3',
+			    name: 'Czp_E3',
+			    component: Czp_E3
+			},
+			{
+			    path: '/Czp/Czp_E4',
+			    name: 'Czp_E4',
+			    component: Czp_E4
+			},
         ]
     },
     {

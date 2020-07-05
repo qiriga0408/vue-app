@@ -12,12 +12,99 @@
         <ul>
             <li>
                 <img src="xlimg/未标题-1.jpg" alt="">
+                <p>特色课</p>
             </li>
-            <li>  <img src="xlimg/未标题-2.jpg" alt=""></li>
-            <li>  <img src="xlimg/未标题-3.jpg" alt=""></li>
+            <li>  <img src="xlimg/未标题-2.jpg" alt="">
+                    <p>一对一辅导</p>
+            
+            </li>
+            <li>  <img src="xlimg/未标题-3.jpg" alt="">
+              <p>学习日历</p>
+            </li>
+        </ul>
+    </div>
+    <p class="s1">
+        <span>
+
+        </span>
+        名师阵容
+    </p>
+   
+    <div class="bus">
+        <ul>
+            <li v-for="(v,i) in arr" :key="i">
+                <img :src="v.img" alt="">
+                <p>
+                   <span>
+                    {{v.name}}
+                </span>
+                <span>
+                    {{v.nr}}
+                </span> 
+                </p>
+                
+            </li>
+          
+        </ul>
+
+    </div>    
+     <p class="s1">
+        <span>
+
+        </span>
+        精品课程
+    </p>
+<div class="jp">
+        <ul>
+            <li v-for="(v,i) in arr1" :key="i">
+               <p class="p1">{{v.nr}}</p>
+               <span class="s1">{{v.ks}}</span>
+               <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
+               <p class="p3"><span class="ss">{{v.num}}</span> <span class="ss1">{{v.jj}}</span></p>
+            </li>
+        </ul>
+          
+     
+
+    </div>    
+     <p class="s1">
+        <span>
+
+        </span>
+        推荐课程
+    </p>
+    <div class="jp">
+        <ul>
+            <li v-for="(v,i) in arr2" :key="i">
+               <p class="p1">{{v.nr}}</p>
+               <span class="s1">{{v.ks}}</span>
+               <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
+               <p class="p3"><span class="ss">{{v.num}}</span> <span class="ss1">{{v.jj}}</span></p>
+            </li>
+        </ul>
+    </div>
+    <p class="s1">
+        <span>
+
+        </span>
+        明星讲师
+    </p>
+    <div class="jp1">
+        <ul>
+            <li v-for="(v,i) in arr3" :key="i">
+                <div>
+                    <img :src="v.img" alt="">
+                </div>
+               <div class="d1">
+                   <p class="p1">{{v.name}} <span>{{v.mm}}</span></p>
+                   <p class="p2">{{v.nr}}</p>
+               </div>
+                
+            </li>
         </ul>
     </div>
         </div>
+
         <Footer></Footer>
     </div>
 </template>
@@ -30,16 +117,36 @@ export default {
     data(){
         return{
             list:[],
-            add:[]
+            add:[],
+            arr:[],
+            arr1:[],
+            arr2:[],
+            arr3:[]
         }
     },
     mounted(){
         this.$axios.get("data.json").then((res)=>{
-            console.log(res)
+         
         })
          this.$axios.get("xlbunner.json").then((res)=>{
-            console.log(res.data.img)
+       
             this.add=res.data.img
+        })
+           this.$axios.get("./xlimg/xl.json").then((res)=>{
+            console.log(res)
+            this.arr=res.data.name
+        })
+          this.$axios.get("./xlimg/xl2.json").then((res)=>{
+            console.log(res)
+            this.arr1=res.data.name
+        })
+          this.$axios.get("./xlimg/xl2.json").then((res)=>{
+            console.log(res)
+            this.arr2=res.data.name1
+        })
+         this.$axios.get("./xlimg/xl2.json").then((res)=>{
+            console.log(res)
+            this.arr3=res.data.name2
         })
     }
 }
@@ -72,16 +179,208 @@ export default {
            background: #fff;
         margin-left: 0.34rem;
         border-radius: 10%;
-        display: flex;
-       
+        
         img{
                width: 0.44rem;
                height: 0.44rem;
-             
+               
+                margin-left: 0.80rem;
+                margin-top: 0.56rem;
+            }
+            p{
+                  
+                text-align: center;
+           margin-top: 0.3rem;
+             font-size: 0.24rem;
+            font-weight: 400;
+            color: #8c8c8c;
             }
         }
     }
 
     }
+    .bus{
+        width: 100%;
+    margin-bottom: 0.44rem;
+        ul{
+            width: 7.16rem;
+          margin-left: 0.2rem;
+            li{  
+                width: 100%;
+                height: 1.73rem;
+                background: #fff;
+                 margin-top: 0.2rem;
+                 display: flex;
+                img{
+                width: 0.80rem;
+            margin-left: 0.3rem;
+            height: 0.80rem;
+      margin-top: 0.4rem;
+            border-radius: 50%;
+            flex: none;
+        }
+        span{
+            display: block;
+        }
+        span:nth-of-type(1){
+    font-size: 0.28rem;
+    color: #595959;
+    margin-top: 0.44rem;
+    margin-left: 0.24rem;
+        }
+        span:nth-of-type(2){
+
+    font-size: 0.24rem;
+ margin-left: 0.24rem;
+     margin-top: 0.24rem;
+    color: #b7b7b7;
+
+        }
+            }
+        }
+        
+    }
+   .s1{
+           font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #595959;
+    position: relative;
+   top: -0.1rem;
+  margin-left: 0.56rem;
+  
+
+    font-size: 0.3rem;
+    span{
+            position: absolute;
+  
+
+    left: -0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.05rem;
+  
+    height: 0.32rem;
+    background: #eb6100;
+    }
    
+   }
+ .jp{
+     width: 100%;
+     margin-top: 0.32rem;
+         margin-bottom: 0.72rem;
+     ul{
+         width: 100%;
+      
+
+         li{
+                 border-radius: 1.3vw;
+             background: #fff;
+               margin-left: 0.3rem;
+               margin-bottom: 0.3rem;
+             width: 6.88rem;
+             height: 4.12rem;
+        
+             img{
+                 width:0.55rem ;
+                 height: 0.55rem;
+                 border-radius: 50%;
+                 margin-right: 0.18rem;
+             }
+             .p1{
+                 margin-left: 0.28rem;
+                 padding-top: 0.48rem;
+                width: 6.23rem ;    
+                font-size: 0.32rem;
+                font-family: PingFangSC-Medium;
+                font-weight: 400;
+                color: #333;
+                 
+             }
+             .s1{
+                 display: block;
+                 margin-top: 0.24rem;
+                     font-family: PingFangSC-Regular;
+                     font-size: 0.24rem;
+                     color: #666;
+                    width: 6.23rem ;  
+                    margin-left: 0.28rem;
+                    margin-bottom: 0.54rem;
+             }
+             .p2{
+                   width: 6.23rem ;  
+                    margin-left: 0.28rem;
+                    display: flex;
+                        font-weight: 400;
+                        font-size: 0.24rem;
+                          color: rgba(0,0,0,.45);
+                         line-height:0.55rem;
+                             font-family: PingFangSC-Regular;
+    
+             }
+             .p3{
+                 margin-top: 0.5rem;
+          
+                 display: flex;
+                 justify-content: space-between;
+                    width: 6.37rem ;  
+                     font-family: PingFangSC-Regular;
+                    margin-left: 0.28rem;
+        
+                    border-top: 1px solid #f5f5f5;
+                    height: 0.88rem;
+                     line-height:0.88rem;
+                   .ss{
+                       font-size: 0.24rem;  
+                       color: rgba(0,0,0,.45);
+                   } 
+                   .ss1{
+                           color: #44a426;
+                           font-size: 0.32rem;
+                   }  
+             }
+         }
+     }
+
+      }
+.jp1{
+    width: 100%;
+    ul{
+        width: 100%;
+        li{
+            width: 7.1rem;
+            height: 1.64rem;
+            background: #fff;
+            margin-left: 0.2rem;
+            display: flex;
+            margin-top: 0.2rem;
+           
+            img{
+                width: 0.8rem;
+                height: 0.8rem;
+                 margin-top: 0.42rem;
+                 margin-right: 0.25rem;
+                  margin-left: 0.3rem;
+            }
+            .d1{
+                   margin-top: 0.42rem;
+                       font-family: PingFangSC-Regular;
+                     font-weight: 400;
+                   .p1{
+                           color: #595959;
+                           font-size: 0.3rem;
+                                margin-bottom: 0.2rem;
+                           span{
+                                   color: #ea7a2f;
+                           }
+                   }
+                   .p2{
+                           color: #b7b7b7;
+                             font-size: 0.24rem;
+                   }
+            }
+
+        }
+    }
+}
+
 </style>
