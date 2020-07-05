@@ -28,8 +28,9 @@ import qrgBankFive from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankFive'
 import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
-import Zhedit from "@/views/zhedit"
-import Zhseach from "@/views/zhseach"
+// 张豪的路由
+import Zhedit from "@/views/zh/zhedit"
+import Zhseach from "@/views/zh/zhseach"
 
 //陈泽平的二级路由
 import Czp_E1 from "@/views/Czp/Czp_E1";
@@ -42,6 +43,7 @@ import Czp_E4 from "@/views/Czp/Czp_E4";
 import Sxldsk from "../views/sxl/sxldsk.vue"
 import Sxlyqs from "../views/sxl/sxlyqs.vue"
 import Sxlysk from "../views/sxl/sxlysk.vue"
+
 
 
 
