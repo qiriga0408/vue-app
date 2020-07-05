@@ -19,6 +19,8 @@ import qrgPractice from '@/views/Qrg/qrgPractice'
 //陈泽平的二级路由
 import Czp_E1 from "@/views/Czp/Czp_E1";
 import Czp_E2 from "@/views/Czp/Czp_E2";
+import Czp_E3 from "@/views/Czp/Czp_E3";
+import Czp_E4 from "@/views/Czp/Czp_E4";
 
 
 //孙晓亮的二级路由
@@ -94,6 +96,16 @@ const routes = [{
                 name: 'Czp_E2',
                 component: Czp_E2
             },
+			{
+			    path: '/Czp/Czp_E3',
+			    name: 'Czp_E3',
+			    component: Czp_E3
+			},
+			{
+			    path: '/Czp/Czp_E4',
+			    name: 'Czp_E4',
+			    component: Czp_E4
+			},
         ]
     },
     {

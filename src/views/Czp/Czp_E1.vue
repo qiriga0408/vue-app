@@ -46,8 +46,8 @@
                 <label for="">
                     <li><van-icon name="records" /><a>我的作业</a></li>
                     <li><van-icon name="friends-o" /><a>关注的老师</a></li>
-                    <li><van-icon name="star-o" /><a>我的收藏</a></li>
-                    <li><van-icon name="down" /><a>我的下载</a></li>
+                    <router-link to="/Czp/Czp_E3" tag="li"><van-icon name="star-o" /><a>我的收藏</a></router-link>
+                    <router-link to="/Czp/Czp_E4" tag="li"><van-icon name="star-o" /><a>我的下载</a></router-link>
                 </label>
             </ul>
             <ul>
@@ -167,7 +167,7 @@
             width: 95%;
             height: 56px;
             background: #FF7906;
-            border-radius: 45px;
+            border-radius: 0.45rem;
             display: flex;
             align-items: center;
             justify-content: space-around;
