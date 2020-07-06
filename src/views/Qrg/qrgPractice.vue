@@ -1,15 +1,20 @@
 <template>
   <div class="practice">
-    <van-nav-bar title="标题" @click-left="onClickLeft" left-arrow>
+    <van-nav-bar title="套卷练习" @click-left="onClickLeft" left-arrow>
+      <!-- <router-link :to="{path:'/qrgPracticeSerach'}"> -->
         <template #right>
+          <router-link :to="{path:'/qrgPracticeSerach'}">
             <van-icon name="search" size="18" />
+          </router-link>
         </template>
+       <!-- </router-link> -->
     </van-nav-bar>  
       <div class="content">
           <van-dropdown-menu>
                 <van-dropdown-item style="width:50%;" v-model="value1" :options="option1" />
                 <van-dropdown-item v-model="value2" :options="option2" />
         </van-dropdown-menu>
+        <img src="/qrgImg/qrg-10.png" alt="">
       </div>
   </div>
 </template>
@@ -31,9 +36,10 @@ name:"qrgPractice",
           { text: '英语', value: 4 },
       ],
       option2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
+        { text: '套卷状态', value: 'a' },
+        { text: '全部', value: 'b' },
+        { text: '已做', value: 'c' },
+        { text: '未做', value: 'd' },
       ],
     };
   },
@@ -56,6 +62,11 @@ name:"qrgPractice",
     .content{
         width: 100%;
         height: auto;
+        img{
+          // margin: 0 auto;
+          // text-align: center;
+          margin-left: 2rem;
+        }
        
     }
 }

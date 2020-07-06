@@ -7,17 +7,10 @@ import Qrg from '@/views/Qrg'
 import Czp from '@/views/Czp'
 
 
+
 Vue.use(VueRouter)
 
-  
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+  //其日嘎的路由配置
 import qrgSite from '@/views/Qrg/qrgSite'
 import qrgBank from '@/views/Qrg/qrgSite/qrgBank'
 import qrgBankOne from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankOne'
@@ -28,6 +21,7 @@ import qrgBankFive from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankFive'
 import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
+import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 // 张豪的路由
 import Zhedit from "@/views/zh/zhedit"
 import Zhseach from "@/views/zh/zhseach"
@@ -44,9 +38,7 @@ import Sxldsk from "../views/sxl/sxldsk.vue"
 import Sxlyqs from "../views/sxl/sxlyqs.vue"
 import Sxlysk from "../views/sxl/sxlysk.vue"
 
-
 Vue.use(VueRouter)
-
 
 // {
 //   path: '/about',
@@ -156,6 +148,11 @@ const routes = [{
         path: '/qrgPractice',
         name: 'qrgPractice',
         component: qrgPractice
+    },
+    {
+      path:'/qrgPracticeSerach',
+      name:'qrgPracticeSerach',
+      component:qrgPracticeSerach
     },
     {
         path: '/qrgBank',
