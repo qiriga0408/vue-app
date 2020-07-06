@@ -6,12 +6,53 @@
 		</header>
 		<main>
 			<ul>
-				<li>1111111111111</li>
-				<li>22222222222222</li>
-				<li>3333333333333</li>
-				<li>444444444444444</li>
-				<li>55555555555555</li>
-				<li>6666666666666</li>
+				<li>
+					<div class="left">
+						<img src="../../../public/czpimg/E3/01.jpg" alt="" />
+					</div>
+					<div class="right">
+						<span>如何成为旅游体验室</span><br />
+						<a>845人已预约</a><br />
+						<strong>￥1998.0</strong>
+					</div>
+				</li>
+				<li>
+					<div class="left">
+						<img src="../../../public/czpimg/E3/02.jpg" alt="" />
+					</div>
+					<div class="right">
+						<span>如何成为旅游体验室</span><br />
+						<a>845人已预约</a><br />
+						<strong>￥1998.0</strong>
+					</div>
+				</li><li>
+					<div class="left">
+						<img src="../../../public/czpimg/E3/03.jpg" alt="" />
+					</div>
+					<div class="right">
+						<span>如何成为旅游体验室</span><br />
+						<a>845人已预约</a><br />
+						<strong>￥1998.0</strong>
+					</div>
+				</li><li>
+					<div class="left">
+						<img src="../../../public/czpimg/E3/04.jpg" alt="" />
+					</div>
+					<div class="right">
+						<span>如何成为旅游体验室</span><br />
+						<a>845人已预约</a><br />
+						<strong>免费</strong>
+					</div>
+				</li><li>
+					<div class="left">
+						<img src="../../../public/czpimg/E3/05.jpg" alt="" />
+					</div>
+					<div class="right">
+						<span>如何成为旅游体验室</span><br />
+						<a>845人已预约</a><br />
+						<strong>￥1998.0</strong>
+					</div>
+				</li>
 			</ul>
 		</main>
 	</div>
@@ -30,14 +71,43 @@
 	header{
 		width: 100%;
 		height: 0.52rem;
-		border-bottom: 0.01rem #ddd solid;
+		border-bottom: 0.01rem #FAFAFA solid;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		a{
-			margin: 0 0.35rem;
+			margin-left: 0.35rem;
+			font-size: 0.32rem;
 		}
 		span{
-			margin: 0 0.45rem;
+			margin: 0 auto;
+			color: #333;
+			font-size: 0.24rem;
+		}
+	}
+	main{
+		width: 100%;
+		height: 100%;
+		ul{
+			list-style: none;
+			li{
+				width: 95%;
+				height: 1.35rem;
+				margin: 0 auto;
+				border-bottom: 0.01rem #FAFAFA solid;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				.left{
+					img{
+						width: 2rem;
+						height: 0.92rem;
+					}
+				}
+				.right{
+					
+				}
+			}
 		}
 	}
 }	

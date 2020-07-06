@@ -37,14 +37,12 @@ import Czp_E1 from "@/views/Czp/Czp_E1";
 import Czp_E2 from "@/views/Czp/Czp_E2";
 import Czp_E3 from "@/views/Czp/Czp_E3";
 import Czp_E4 from "@/views/Czp/Czp_E4";
-
+import Czp_E6 from "@/views/Czp/Czp_E6";
 
 //孙晓亮的二级路由
 import Sxldsk from "../views/sxl/sxldsk.vue"
 import Sxlyqs from "../views/sxl/sxlyqs.vue"
 import Sxlysk from "../views/sxl/sxlysk.vue"
-
-
 
 
 Vue.use(VueRouter)
@@ -132,6 +130,11 @@ const routes = [{
 			    path: '/Czp/Czp_E4',
 			    name: 'Czp_E4',
 			    component: Czp_E4
+			},
+			{
+			    path: '/Czp/Czp_E6',
+			    name: 'Czp_E6',
+			    component: Czp_E6
 			},
         ]
     },

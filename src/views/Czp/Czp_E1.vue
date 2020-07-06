@@ -30,7 +30,7 @@
         </div>
         <div class="nav">
             <div class="nav_left">
-                <van-icon name="like-o" />
+                <img src="../../../public/czpimg/E1/E1_001.jpg" alt="" />
             </div>
             <div class="nav_center">
                 <span>邀请好友注册APP,享多重好礼</span>
@@ -44,34 +44,34 @@
             <ul>
                 <p>课程相关</p>
                 <label for="">
-                    <li><van-icon name="records" /><a>我的作业</a></li>
-                    <li><van-icon name="friends-o" /><a>关注的老师</a></li>
-                    <router-link to="/Czp/Czp_E3" tag="li"><van-icon name="star-o" /><a>我的收藏</a></router-link>
-                    <router-link to="/Czp/Czp_E4" tag="li"><van-icon name="star-o" /><a>我的下载</a></router-link>
+                    <li><img src="../../../public/czpimg/E1/E1_002.jpg" alt=""><a>我的作业</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_003.jpg" alt=""><a>关注的老师</a></li>
+					<router-link to="/Czp/Czp_E3" tag="li"><img src="../../../public/czpimg/E1/E1_004.jpg" alt=""><a>我的收藏</a></router-link>
+					<router-link to="/Czp/Czp_E4" tag="li"><img src="../../../public/czpimg/E1/E1_005.jpg" alt=""><a>我的下载</a></router-link>
                 </label>
             </ul>
             <ul>
                 <p>订单相关</p>
                 <label for="">
-                    <li><van-icon name="records" /><a>我的订单</a></li>
-                    <li><van-icon name="friends-o" /><a>收货地址</a></li>
+					  <router-link to="/Czp/Czp_E6" tag="li"><img src="../../../public/czpimg/E1/E1_006.jpg" alt=""><a>我的订单</a></router-link>
+					  <li><img src="../../../public/czpimg/E1/E1_007.jpg" alt=""><a>收货地址</a></li>
                 </label>
             </ul>
             <ul>
                 <p>我的账户</p>
                 <label for="">
-                    <li><van-icon name="records" /><a>优惠卡</a></li>
-                    <li><van-icon name="friends-o" /><a>学习卡</a></li>
-                    <li><van-icon name="friends-o" /><a>会员</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_008.jpg" alt=""><a>优惠卡</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_009.jpg" alt=""><a>学习卡</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_010.jpg" alt=""><a>会员卡</a></li>
                 </label>
             </ul>
             <ul>
                 <p>自助服务</p>
                 <label for="">
-                    <li><van-icon name="records" /><a>我的消息</a></li>
-                    <li><van-icon name="friends-o" /><a>意见反馈</a></li>
-                    <li><van-icon name="friends-o" /><a>在线客服</a></li>
-                    <li><van-icon name="friends-o" /><a>设置</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_011.jpg" alt=""><a>我的消息</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_012.jpg" alt=""><a>意见反馈</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_013.jpg" alt=""><a>在线客服</a></li>
+					<li><img src="../../../public/czpimg/E1/E1_014.jpg" alt=""><a>设置</a></li>
                 </label>
             </ul>
         </div>
@@ -172,10 +172,11 @@
             align-items: center;
             justify-content: space-around;
             .nav_left{
-                .van-icon{
-                    color: white;
-                    font-size: 22px;
-                }
+                img{
+					width: 0.65rem;
+					height: 0.65rem;
+					background-color: #FF7906;
+				}
             }
             .nav_center{
                 span{
@@ -215,9 +216,9 @@
                     justify-content: space-around;
                     text-align: center;
                     border-bottom: 1px #ddd solid;
-                    .van-icon{
-                        color: #FE944D;
-                        font-size: 0.32rem;
+                    img{
+                        width: 0.32rem;
+						height: 0.32rem;
                     }
                     a{
                         display: block;
