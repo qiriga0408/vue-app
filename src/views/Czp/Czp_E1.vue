@@ -54,7 +54,7 @@
                 <p>订单相关</p>
                 <label for="">
 					  <router-link to="/Czp/Czp_E6" tag="li"><img src="../../../public/czpimg/E1/E1_006.jpg" alt=""><a>我的订单</a></router-link>
-					  <li><img src="../../../public/czpimg/E1/E1_007.jpg" alt=""><a>收货地址</a></li>
+					  <router-link to="/Czp/Czp_E7" tag="li"><img src="../../../public/czpimg/E1/E1_007.jpg" alt=""><a>收货地址</a></router-link>
                 </label>
             </ul>
             <ul>
@@ -71,7 +71,7 @@
 					<li><img src="../../../public/czpimg/E1/E1_011.jpg" alt=""><a>我的消息</a></li>
 					<li><img src="../../../public/czpimg/E1/E1_012.jpg" alt=""><a>意见反馈</a></li>
 					<li><img src="../../../public/czpimg/E1/E1_013.jpg" alt=""><a>在线客服</a></li>
-					<li><img src="../../../public/czpimg/E1/E1_014.jpg" alt=""><a>设置</a></li>
+					<router-link to="/Czp/Czp_E10" tag="li"><img src="../../../public/czpimg/E1/E1_014.jpg" alt=""><a>设置</a></router-link>
                 </label>
             </ul>
         </div>

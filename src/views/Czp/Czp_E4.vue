@@ -1,8 +1,11 @@
 <template>
 	<div class="box">
 		<header>
-			<router-link to="/Czp" tag="a"><</router-link>
-			<span>正在下载</span>
+			<van-nav-bar
+			  title="正在下载"
+			  left-arrow
+			  @click-left="onClickLeft"
+			/>
 		</header>
 		<main>
 			<ul>
@@ -43,7 +46,12 @@
 
 <script>
 	export default{
-		name:"Czp_E4"
+		name:"Czp_E4",
+		methods:{
+			onClickLeft(){
+			   this.$router.push('/Czp');
+			},
+		}
 	}
 </script>
 
@@ -51,23 +59,6 @@
 .box{
 	width: 100%;
 	height: 100%;
-	header{
-		width: 100%;
-		height: 0.52rem;
-		border-bottom: 0.01rem #FAFAFA solid;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		a{
-			margin-left: 0.35rem;
-			font-size: 0.32rem;
-		}
-		span{
-			margin: 0 auto;
-			color: #333;
-			font-size: 0.24rem;
-		}
-	}
 	main{
 		width: 100%;
 		height: 100%;
