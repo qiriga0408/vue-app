@@ -8,7 +8,7 @@ import Czp from '@/views/Czp'
 
 
 
-Vue.use(VueRouter)
+
 
   //其日嘎的路由配置
 import qrgSite from '@/views/Qrg/qrgSite'
@@ -22,6 +22,9 @@ import qrgBankSix from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSix'
 import qrgBankSeven from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankSeven'
 import qrgPractice from '@/views/Qrg/qrgPractice'
 import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
+import qrgDry from '@/views/Qrg/qrgDry'
+import qrgTopic from '@/views/Qrg/qrgTopic'
+
 // 张豪的路由
 import Zhedit from "@/views/zh/zhedit"
 import Zhseach from "@/views/zh/zhseach"
@@ -38,20 +41,9 @@ import Sxldsk from "../views/sxl/sxldsk.vue"
 import Sxlyqs from "../views/sxl/sxlyqs.vue"
 import Sxlysk from "../views/sxl/sxlysk.vue"
 
+Vue.use(VueRouter)
 
 
-
-
-
-
-// {
-//   path: '/about',
-//   name: 'About',
-//   // route level code-splitting
-//   // this generates a separate chunk (about.[hash].js) for this route
-//   // which is lazy-loaded when the route is visited.
-//   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-// }
 const routes = [{
         path: '/Xl',
         name: 'Xl',
@@ -83,7 +75,6 @@ const routes = [{
                 name: 'Sxldsk',
                 component: Sxldsk,
             },
-
             {
                 path: '/Sxl/Sxlysk',
                 name: 'Sxlysk',
@@ -95,7 +86,6 @@ const routes = [{
                 name: '/Sxlyqs',
                 component: Sxlyqs,
             },
-
         ]
     },
 
@@ -138,21 +128,37 @@ const routes = [{
         name: 'Qrg',
         component: Qrg
     },
+    //考点陪练
     {
         path: '/qrgSite',
         name: "qrgSite",
         component: qrgSite
     },
+    //套卷练习
     {
         path: '/qrgPractice',
         name: 'qrgPractice',
         component: qrgPractice
     },
+    //错题练习
+    {
+      path:'/qrgTopic',
+      name:'qrgTopic',
+      component:qrgTopic
+    },
+    //仿真模考
+    {
+      path:'/qrgDry',
+      name:'qrgDry',
+      component:qrgDry
+    },
+    //套卷练习里的搜索
     {
       path:'/qrgPracticeSerach',
       name:'qrgPracticeSerach',
       component:qrgPracticeSerach
     },
+    //考点专练里的
     {
         path: '/qrgBank',
         name: 'qrgBank',
