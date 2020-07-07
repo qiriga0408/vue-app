@@ -85,9 +85,9 @@
                         </div>
 		                </van-list>
 
-                    <div id="log" @click="xf()">
+                    <!-- <div id="log" @click="xf()">
                         <img src="/zhimg/zh8.png" alt="">
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>

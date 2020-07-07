@@ -30,7 +30,7 @@ const qrgMessage =()=>import('@/components/qrgMessage')
 // 张豪的路由
 import Zhedit from "@/views/zh/zhedit"
 import Zhseach from "@/views/zh/zhseach"
-import Zhxf from "@/views/zh/zhxf"
+// import Zhxf from "@/views/zh/zhxf"
 
 //陈泽平的二级路由
 import Czp_E1 from "@/views/Czp/Czp_E1";
@@ -77,11 +77,11 @@ const routes = [{
         name: 'Zhseach',
         component: Zhseach
       },
-      {
-        path: '/zhxf',
-        name: 'Zhxf',
-        component: Zhxf
-      },
+      // {
+      //   path: '/zhxf',
+      //   name: 'Zhxf',
+      //   component: Zhxf
+      // },
     {
         path: '/Sxl',
         name: 'Sxl',
