@@ -7,8 +7,13 @@
                 <img src="zhimg/zh1.gif" alt="" @click="seach()">
               </span>     
       </header>
+        <van-dropdown-menu>
+              <van-dropdown-item v-model="value1" :options="option1" />
+              <van-dropdown-item v-model="value2" :options="option2" />
+              <van-dropdown-item v-model="value3" :options="option3" />
+        </van-dropdown-menu>
       <!-- 导航条 -->
-        <div class="zhitem-1">
+        <!-- <div class="zhitem-1">
           <ul>
             <li  @click="add()">
               分类
@@ -23,8 +28,8 @@
                <img src="zhimg/zh4.gif" alt="">
             </li>
           </ul>
-        </div>
-                <van-popup class="boxx"
+        </div> -->
+                <!-- <van-popup class="boxx"
                             v-model="flag"
                             position="top"
                             :style="{ height: '40%',}"
@@ -56,7 +61,7 @@
                               </div>
                               
                             </div>
-                </van-popup>
+                </van-popup> -->
                
                 <div class="box">
                   <div class="content">
@@ -91,15 +96,13 @@
                         </div>
 		                </van-list>
 
-                    <div id="log">
+                    <div id="log" @click="xf()">
                         <img src="/zhimg/zh8.png" alt="">
                     </div>
 
                   </div>
                 </div>
-                
-                 
-
+              
         <Footer></Footer>
     </div>
 </template>
@@ -123,10 +126,45 @@ export default {
 			  number:4,
 			  // 所有的JSON数据
         all:"",
-        
+
+
+        value1: 0,
+        value2: 'a',
+            option1: [
+              { text: '分类', value: 0 },
+              { text: '学科', value: 1 },
+              { text: '初一', value: 2 },
+              { text: '初二', value: 3 },
+              { text: '初三', value: 4 },
+              { text: '高一', value: 5 },
+              { text: '学科', value: 6 },
+            ],
+          option2: [
+            { text: "排序", value: "a" },
+            { text: "综合排序", value: 0 },
+            { text: "最新", value: 1 },
+            { text: "最热", value: 2 },
+            { text: "价格从低到高", value: 3 },
+            { text: "价格从高到低", value: 4 }
+          ],
+           value3: 'b',
+            option3: [
+              { text: "筛选", value: "b" },
+                { text: "全部", value: 0 },
+                { text: "大班课", value: 2 },
+                { text: "小班课", value: 3 },
+                { text: "公开课", value: 4 },
+                { text: "点播课", value: 5 },
+                { text: "面授课", value: 7 },
+                { text: "音频课", value: 8 },
+                { text: "系统课", value: 9 },
+                { text: "图文课", value: 10 },
+                { text: "会员课", value: 1 }
+            ],
+          
+          
       }
     },
-
     
     mounted(){
        document.addEventListener("touchmove",function(ev){
@@ -145,6 +183,7 @@ export default {
         })
     },
     methods:{
+      // 弹出层
       add(){
         this.flag=true
       },
@@ -183,14 +222,22 @@ export default {
 			                    }
 			                }, 3000);
           },
+          // 跳转详情
           tz(id){
             this.$router.push({path:"/zhedit",query:{id:id}})
             this.$store.commit("setData",this.list)
           },
+          // 搜索跳转
           seach(){
             this.$router.push("/zhseach")
           },
-    
+          // 信封跳转
+          xf(){
+            this.$router.push("/zhxf")
+          },
+          onClick(name, title) {
+               
+            },
     },
   
 }
@@ -267,6 +314,7 @@ header{
 .item-2{
   width: 100%;
   height: 3rem;
+  
   p{
     width: 100%;
     height: 0.4rem;
@@ -378,8 +426,8 @@ header{
   width: 0.8rem;
   height: 0.8rem;
   position: fixed;
-  left: 0;
-  top: 0;
+  left: 6rem;
+  top: 10rem;
   img{
     display: block;
     width: 0.8rem;
@@ -387,6 +435,8 @@ header{
     
   }
 }
+
+
 
 
 </style>
