@@ -27,6 +27,7 @@ import Sxlyqs from "../views/sxl/sxlyqs.vue"
 import Sxlysk from "../views/sxl/sxlysk.vue"
 
 
+import Xlrl from "../views/xlrl"
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,11 @@ const routes = [{
         name: 'Xl',
         component: Xl
     },
+    {
+    path: '/Xlrl/:id',
+    name: 'Xlrl',
+    component: Xlrl
+},
     {
         path: '/Zh',
         name: 'Zh',

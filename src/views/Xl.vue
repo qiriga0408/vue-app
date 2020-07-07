@@ -2,7 +2,7 @@
     <div id="shouye">
         <div class="content">
    <div class="block">
-    <el-carousel height="399px"  width="100%">
+    <el-carousel height=" 53.3vw"  width="100%">
       <el-carousel-item v-for="(v,i) in add" :key="i">
         <img :src="v" alt="" width="100%" height="100%" >
       </el-carousel-item>
@@ -11,14 +11,16 @@
    <div class="nav">
         <ul>
             <li>
-                <img src="xlimg/未标题-1.jpg" alt="">
-                <p>特色课</p>
+                <router-link to="/Zh">
+                <img src="xlimg/未标题-1.jpg" alt="" >
+                <p>特色课</p></router-link>
             </li>
-            <li>  <img src="xlimg/未标题-2.jpg" alt="">
+            <li> <img src="xlimg/未标题-2.jpg" alt="">
                     <p>一对一辅导</p>
             
             </li>
-            <li>  <img src="xlimg/未标题-3.jpg" alt="">
+            <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" >
+
               <p>学习日历</p>
             </li>
         </ul>
@@ -30,9 +32,9 @@
         名师阵容
     </p>
    
-    <div class="bus">
+    <div class="bus" >
         <ul>
-            <li v-for="(v,i) in arr" :key="i">
+            <li v-for="(v,i) in arr" :key="i"  @click="open">
                 <img :src="v.img" alt="">
                 <p>
                    <span>
@@ -56,11 +58,13 @@
     </p>
 <div class="jp">
         <ul>
-            <li v-for="(v,i) in arr1" :key="i">
-               <p class="p1">{{v.nr}}</p>
+            <li v-for="(v,i) in arr1" :key="i" @click="cc(v.id)">
+          
+               <p class="p1">每时每课特级教师-{{v.nr}}</p>
                <span class="s1">{{v.ks}}</span>
                <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
                <p class="p3"><span class="ss">{{v.num}}</span> <span class="ss1">{{v.jj}}</span></p>
+   
             </li>
         </ul>
           
@@ -73,9 +77,9 @@
         </span>
         推荐课程
     </p>
-    <div class="jp">
+    <div class="jp"  >
         <ul>
-            <li v-for="(v,i) in arr2" :key="i">
+            <li v-for="(v,i) in arr2" :key="i" @click="cc(v.id)">
                <p class="p1">{{v.nr}}</p>
                <span class="s1">{{v.ks}}</span>
                <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
@@ -91,7 +95,7 @@
     </p>
     <div class="jp1">
         <ul>
-            <li v-for="(v,i) in arr3" :key="i">
+            <li v-for="(v,i) in arr3" :key="i" @click="open">
                 <div>
                     <img :src="v.img" alt="">
                 </div>
@@ -123,6 +127,19 @@ export default {
             arr2:[],
             arr3:[]
         }
+    },
+     methods: {
+      open() {
+          
+         this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
+          dangerouslyUseHTMLString: true,
+showConfirmButton:false
+      
+        });
+      },
+      cc(v){
+            this.$router.push({path:`/Xlrl/${v}`})
+      }
     },
     mounted(){
         this.$axios.get("data.json").then((res)=>{
@@ -376,6 +393,7 @@ export default {
                    .p2{
                            color: #b7b7b7;
                              font-size: 0.24rem;
+                             
                    }
             }
 
