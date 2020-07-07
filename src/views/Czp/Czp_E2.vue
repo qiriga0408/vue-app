@@ -1,8 +1,11 @@
 <template>
     <div class="box">
         <header>
-            <router-link to="/Czp" tag="span"><</router-link>
-            <a>个人信息</a>
+            <van-nav-bar
+              title="个人信息"
+              left-arrow
+              @click-left="onClickLeft"
+            />
         </header>
         <main>
             <van-cell-group>
@@ -128,6 +131,9 @@
             }
         },
         methods:{
+			onClickLeft(){
+			   this.$router.push('/Czp');
+			},
             showPopup1(){
                 this.show1 = !this.show1;
             },
@@ -171,20 +177,6 @@
 .box{
     width: 100%;
     height: 100%;
-    header{
-        width: 100%;
-        height: 38px;
-        display: flex;
-        align-items: center;
-        span{
-            flex: 2;
-            margin: 0 15px;
-            font-size: 24px;
-        }
-        a{
-            flex: 3;
-        }
-    }
     main{
         .van-cell-group{
             .van-cell{

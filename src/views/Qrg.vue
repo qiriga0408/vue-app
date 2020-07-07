@@ -14,14 +14,14 @@
                         <img src="/qrgImg/qrg-2.png" alt="">
                         <p>套卷练习</p>
                     </router-link>
-                    <div class="content-one-y-img">
+                    <router-link tag="div" :to="{path:'/qrgDry'}" class="content-one-y-img">
                         <img src="/qrgImg/qrg-3.png" alt="">
                         <p>仿真模考</p>
-                    </div>
-                    <div class="content-one-y-img">
+                    </router-link>
+                    <router-link tag="div" :to="{path:'/qrgTopic'}" class="content-one-y-img">
                         <img src="/qrgImg/qrg-4.png" alt="">
                         <p>错题练习</p>
-                    </div>
+                    </router-link>
                   
                 </div>
                 <div class="content-one-t">

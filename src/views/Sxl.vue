@@ -16,6 +16,7 @@
                 </ul>
               </div>
             <div><router-view ></router-view></div>
+              
         </div>
         <Footer></Footer>
     </div>
