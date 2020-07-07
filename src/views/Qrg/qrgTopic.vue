@@ -14,7 +14,8 @@
              <p @click="top">类型不限</p>
              <p>巩固全部错题</p>
              <p @click="topic">移除错题</p>
-
+<!-- <van-button type="primary" text="显示遮罩层" @click="show = true" /> -->
+        
          </div>
          <div v-show="tops" class="top">
              <p>全部</p>
@@ -22,6 +23,7 @@
              <p>考点专练</p>
              <p>仿真模考</p>
          </div>
+         <!-- <van-overlay v-show="!tops" @click="tops" /> -->
             
           <!-- <p @click="int()">sda</p> -->
              <img src="/qrgImg/qrg-12.png" alt="">

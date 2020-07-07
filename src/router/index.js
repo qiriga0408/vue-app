@@ -24,6 +24,8 @@ import qrgPractice from '@/views/Qrg/qrgPractice'
 import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
+const qrgMessage =()=>import('@/components/qrgMessage')
+
 
 // 张豪的路由
 import Zhedit from "@/views/zh/zhedit"
@@ -188,6 +190,12 @@ const routes = [{
       path:'/qrgPracticeSerach',
       name:'qrgPracticeSerach',
       component:qrgPracticeSerach
+    },
+    //留言的页面
+    {
+      path:'/qrgMessage',
+      name:'qrgMessage',
+      component:qrgMessage
     },
     //考点专练里的
     {
