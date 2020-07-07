@@ -8,34 +8,8 @@
               </span>     
       </header>
         <van-dropdown-menu>
-              <van-dropdown-item v-model="value1" :options="option1" />
-              <van-dropdown-item v-model="value2" :options="option2" />
-              <van-dropdown-item v-model="value3" :options="option3" />
-        </van-dropdown-menu>
-      <!-- 导航条 -->
-        <!-- <div class="zhitem-1">
-          <ul>
-            <li  @click="add()">
-              分类
-              <img src="zhimg/zh4.gif" alt="">
-            </li>
-            <li @click="ad()">
-              排序
-               <img src="zhimg/zh4.gif" alt="">
-            </li>
-            <li>
-              筛选
-               <img src="zhimg/zh4.gif" alt="">
-            </li>
-          </ul>
-        </div> -->
-                <!-- <van-popup class="boxx"
-                            v-model="flag"
-                            position="top"
-                            :style="{ height: '40%',}"
-                            >
-                            <span class="span2" @click="qx()">X</span>
-                            <div class="item-2">
+              <van-dropdown-item title="分类" >
+                   <div class="item-2">
                               <p>年级</p>
                               <div class="div1">
                                 <ul>
@@ -43,16 +17,18 @@
                                   <li>初二</li>
                                   <li>初三</li>
                                   <li>高一</li>
+                                  <li>高二</li>
                                 </ul>
                               </div>
 
-                            <p>学科</p>
+                            <p class="p1">学科</p>
                               <div class="div1">
                                 <ul>
                                   <li>语文</li>
                                   <li>数学</li>
                                   <li>英语</li>
                                   <li>物理</li>
+                                  <li>化学</li>
                                 </ul>
                               </div>
                               <div class="div2">
@@ -61,7 +37,20 @@
                               </div>
                               
                             </div>
-                </van-popup> -->
+              </van-dropdown-item>
+              <van-dropdown-item v-model="value2" :options="option2" />
+
+              <van-dropdown-item title="筛选">
+                    <div class="item-6">
+                        <ul>
+                          <li v-for="(item,key) in option3" :key="key">
+                            {{item.text}}
+                          </li>
+                        </ul>
+                    </div>
+              </van-dropdown-item>
+        </van-dropdown-menu>
+      
                
                 <div class="box">
                   <div class="content">
@@ -130,15 +119,6 @@ export default {
 
         value1: 0,
         value2: 'a',
-            option1: [
-              { text: '分类', value: 0 },
-              { text: '学科', value: 1 },
-              { text: '初一', value: 2 },
-              { text: '初二', value: 3 },
-              { text: '初三', value: 4 },
-              { text: '高一', value: 5 },
-              { text: '学科', value: 6 },
-            ],
           option2: [
             { text: "排序", value: "a" },
             { text: "综合排序", value: 0 },
@@ -147,20 +127,18 @@ export default {
             { text: "价格从低到高", value: 3 },
             { text: "价格从高到低", value: 4 }
           ],
-           value3: 'b',
-            option3: [
-              { text: "筛选", value: "b" },
-                { text: "全部", value: 0 },
-                { text: "大班课", value: 2 },
-                { text: "小班课", value: 3 },
-                { text: "公开课", value: 4 },
-                { text: "点播课", value: 5 },
-                { text: "面授课", value: 7 },
-                { text: "音频课", value: 8 },
-                { text: "系统课", value: 9 },
-                { text: "图文课", value: 10 },
-                { text: "会员课", value: 1 }
-            ],
+           option3: [
+              { text: "全部", value: 0 },
+              { text: "大班课", value: 2 },
+              { text: "小班课", value: 3 },
+              { text: "公开课", value: 4 },
+              { text: "点播课", value: 5 },
+              { text: "面授课", value: 7 },
+              { text: "音频课", value: 8 },
+              { text: "系统课", value: 9 },
+              { text: "图文课", value: 10 },
+              { text: "会员课", value: 1 }
+          ],
           
           
       }
@@ -313,12 +291,17 @@ header{
 }
 .item-2{
   width: 100%;
-  height: 3rem;
-  
+  height: 7rem;
   p{
     width: 100%;
     height: 0.4rem;
-    margin-top: 0.2rem;
+    margin-top: 0.3rem;
+    line-height: 0.4rem;
+  }
+  .p1{
+    width: 100%;
+    height: 0.4rem;
+    margin-top: 1.6rem;
     line-height: 0.4rem;
   }
   .div1{
@@ -331,12 +314,13 @@ header{
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-around;
       li{
         width: 1.6rem;
         text-align: center;
         line-height: 0.8rem;
         background: #F5F5F5;
+        margin-left: 0.2rem;
+        margin-top: 0.2rem;
       }
     
     }
@@ -346,7 +330,7 @@ header{
     height: 0.6rem;
     display: flex;
     justify-content: space-around;
-    margin-top: 0.4rem;
+    margin-top: 1.3rem;
   }
 }
 .item-4{
@@ -433,6 +417,25 @@ header{
     width: 0.8rem;
     height: 0.8rem;
     
+  }
+}
+.item-6{
+  width: 7.5rem;
+  height: 4rem;
+  ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    li{
+      width: 1.6rem;
+      height: 0.9rem;
+      text-align: center;
+      background: #eee;
+      line-height: 0.9rem;
+      margin-left: 0.2rem;
+    }
   }
 }
 
