@@ -25,6 +25,10 @@ import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
 const qrgMessage =()=>import('@/components/qrgMessage')
+const qrgCodeLogin =()=>import('@/components/qrgCodeLogin')
+const qrgBoarding =()=>import('@/components/qrgBoarding')
+const qrgPassword =()=>import('@/components/qrgPassword')
+const qrgSetPassword =()=>import('@/components/qrgSetPassword')
 
 
 // 张豪的路由
@@ -69,6 +73,26 @@ const routes = [{
     path: '/Xlrl/:id',
     name: 'Xlrl',
     component: Xlrl
+},
+{
+    path:'/qrgCodeLogin',
+    name:'qrgCodeLogin',
+    component:qrgCodeLogin
+},
+{
+    path:'/qrgBoarding',
+    name:'qrgBoarding',
+    component:qrgBoarding
+},
+{
+    path:'/qrgPassword',
+    name:'qrgPassword',
+    component:qrgPassword
+},
+{
+    path:'/qrgSetPassword',
+    name:'qrgSetPassword',
+    component:qrgSetPassword
 },
     {
         path: '/Zh',
