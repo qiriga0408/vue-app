@@ -4,8 +4,7 @@ import router from './router'
 
 import store from './store'
 
-import jss from 'axios'
-Vue.prototype.$axios = jss
+
 
 import "./util/rem"
 
@@ -13,11 +12,12 @@ import './css/reset.css'
 
 import 'swiper/css/swiper.min.css'
 
-import axios from './util/http'
+import http from './util/http'
 
-Vue.prototype.$http = axios
+Vue.prototype.$http = http
  
-
+import axios from 'axios' 
+Vue.prototype.$axios=axios
 
 
 import Iscroll from 'iscroll'

@@ -6,16 +6,16 @@
         <div class="loding_loding">
             <div>
                 <div ref="div1" class="inp">
-                    <input placeholder="请输入手机号" />
+                    <input placeholder="请输入手机号"  v-model="ss"/>
                 </div>
                 <div ref="div2" class="inp">
-                    <input   placeholder="请输入密码" />
+                    <input   placeholder="请输入密码" v-model="ss1" />
                 </div>
                 <div class="loding_loding_Registration">
                     <div v-on:click="password">找回密码</div>
                     <div v-on:click="reg">注册/验证码登录</div>
                 </div>
-                <button class="btn">登录</button>
+                <button class="btn" @click="dlu">登录</button>
             </div>
         </div>
     </div>    
@@ -23,6 +23,12 @@
 
 <script>
 export default {
+    data(){
+        return{
+            ss:"",
+            ss1:""
+        }
+    },
     methods:{
 
         password(){
@@ -30,7 +36,30 @@ export default {
         },
         reg(){
             this.$router.push('/qrgBoarding')
+        },
+        dlu(){
+            this.$http.post('/api/app/login',{
+                mobile:this.ss,
+            password:this.ss1,
+                type:1
+          
+            }).then((res)=>{
+             
+                console.log(res)
+                if(res.data.code==200){
+this.$router.push({path:'/Czp/Czp_E1'}) 
+                }else{
+                    alert("账号密码不正确")
+                }
+                   
+                
+                  
+            }).catch(error=>{
+                console.log(error+"报错了")
+            })
         }
+            
+        
     }
 }
 </script>

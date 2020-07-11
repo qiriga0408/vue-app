@@ -44,6 +44,7 @@ import Czp_E4 from "@/views/Czp/Czp_E4";
 import Czp_E6 from "@/views/Czp/Czp_E6";
 import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
+import Xg from "@/views/Czp/xiugai";
 
 //孙晓亮的二级路由
 import Sxldsk from "../views/sxl/sxldsk.vue"
@@ -109,11 +110,7 @@ const routes = [{
         name: 'Zhseach',
         component: Zhseach
       },
-      // {
-      //   path: '/zhxf',
-      //   name: 'Zhxf',
-      //   component: Zhxf
-      // },
+      
     {
         path: '/Sxl',
         name: 'Sxl',
@@ -181,7 +178,12 @@ const routes = [{
 			    path: '/Czp/Czp_E10',
 			    name: 'Czp_E10',
 			    component: Czp_E10
-			},
+            },
+            {
+                path: '/Czp/xg',
+                name: 'Xg',
+                component: Xg
+              },
         ]
     },
     {

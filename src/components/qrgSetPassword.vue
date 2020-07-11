@@ -9,6 +9,7 @@
                     @click-right="onClickRight"
             />
         </header>
+        
         <ul>
             <li>
                 <input type="password" placeholder="请设置密码" v-model="onePas" />
@@ -38,14 +39,24 @@
             },
             onClickRight(){
                 this.$router.push('/Czp')
+            },
+           btnChange(){
+               if(this.onePas==this.twoPas){
+                    var ss= window.localStorage.getItem("mobile")
+                    console.log(ss)
+                    var ss1=window.localStorage.getItem("sms_code")
+                this.$http.post("/api/app/password",{mobile:ss,password:this.onePas,sms_code:ss1}).then((res)=>{
+                 window.localStorage.setItem("password",this.onePas)
+                    
+                }).catch((error)=>{
+                    console.log(error);
+
+                })
+               }else{
+                   alert("密码不一致")
+               }
+                 
             }
-            // btnChange(){
-            //     this.$http.post("/api/app/smsCode",{mobile:this.onePas,sms_type:'getPassword'}).then((res)=>{
-            //         console.log(res);
-            //     }).catch((error)=>{
-            //         console.log(error);
-            //     })
-            // }
         }
     }
 </script>
