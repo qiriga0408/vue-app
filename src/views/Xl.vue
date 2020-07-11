@@ -4,7 +4,7 @@
    <div class="block">
     <el-carousel height=" 53.3vw"  width="100%">
       <el-carousel-item v-for="(v,i) in add" :key="i">
-        <img :src="v" alt="" width="100%" height="100%" >
+        <img :src="v.banner_img" alt="" width="100%" height="100%" >
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -25,87 +25,94 @@
             </li>
         </ul>
     </div>
-    <p class="s1">
-        <span>
-
-        </span>
-        名师阵容
-    </p>
    
+   <div class="box" v-for="(item,key) in arr" :key="key">
     <div class="bus" >
-        <ul>
-            <li v-for="(v,i) in arr" :key="i"  @click="open">
-                <img :src="v.img" alt="">
+         <p class="s1">
+        <span>
+            
+        </span>
+        {{item.channel_info.name}}
+        <!-- 推荐课程 -->
+    </p>
+        <ul v-if="item.channel_info.type==3">
+            <li  v-for="(v,i) in item.list" :key="i"  @click="open">
+                <img :src="v.teacher_avatar" alt="">
                 <p>
                    <span>
-                    {{v.name}}
+                    {{v.teacher_name}}
                 </span>
                 <span>
-                    {{v.nr}}
+                    {{v.introduction}}
                 </span> 
                 </p>
                 
             </li>
           
         </ul>
+        
 
     </div>    
-     <p class="s1">
+    
+<div class="jp">
+         <p class="s1">
         <span>
 
         </span>
-        精品课程
+         <!-- {{item.channel_info.name}} -->
+        <!-- 精品课程 -->
     </p>
-<div class="jp">
-        <ul>
-            <li v-for="(v,i) in arr1" :key="i" @click="cc(v.id)">
-          
-               <p class="p1">每时每课特级教师-{{v.nr}}</p>
-               <span class="s1">{{v.ks}}</span>
-               <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
-               <p class="p3"><span class="ss">{{v.num}}</span> <span class="ss1">{{v.jj}}</span></p>
-   
+        <ul v-if="item.channel_info.type==1">
+            <li v-for="(v,i) in item.list" :key="i" @click="cc(v.id)">
+               <p class="p1">{{v.title}}</p>
+               <span class="s1">共{{v.total_periods}}课时</span>
+               <p class="p2"><img :src="v.teachers_list[0].teacher_avatar" alt=""> {{v.teachers_list[0].teacher_name}}</p>
+               <p class="p3"><span class="ss">{{v.sales_num}}已报名</span> <span class="ss1">{{v.price|number() }}</span></p>
+
             </li>
         </ul>
           
-     
 
     </div>    
-     <p class="s1">
+    
+    <!-- <div class="jp"  >
+         <p class="s1">
         <span>
 
         </span>
+        {{item.channel_info.name}}
         推荐课程
     </p>
-    <div class="jp"  >
         <ul>
-            <li v-for="(v,i) in arr2" :key="i" @click="cc(v.id)">
-               <p class="p1">{{v.nr}}</p>
+            <li v-for="(v,i) in item.list" :key="i" @click="cc(v.id)">
+               <p class="p1">{{v.teacher_name}}</p>
                <span class="s1">{{v.ks}}</span>
                <p class="p2"><img :src="v.img" alt=""> {{v.name}}</p>
                <p class="p3"><span class="ss">{{v.num}}</span> <span class="ss1">{{v.jj}}</span></p>
             </li>
         </ul>
-    </div>
-    <p class="s1">
+    </div> -->
+    
+    <div class="jp1">
+        <p class="s1">
         <span>
 
         </span>
-        明星讲师
+        <!-- 明星讲师 -->
     </p>
-    <div class="jp1">
-        <ul>
-            <li v-for="(v,i) in arr3" :key="i" @click="open">
+        <ul  v-if="item.channel_info.type==4">
+            <li v-for="(v,i) in item.list" :key="i" @click="open">
                 <div>
-                    <img :src="v.img" alt="">
+                    <img :src="v.teacher_avatar" alt="">
                 </div>
                <div class="d1">
-                   <p class="p1">{{v.name}} <span>{{v.mm}}</span></p>
-                   <p class="p2">{{v.nr}}</p>
+                   <p class="p1">{{v.teacher_name}} <span>{{v.level_name}}</span></p>
+                   <p class="p2">{{v.introduction}}</p>
                </div>
                 
             </li>
         </ul>
+      </div>
     </div>
         </div>
 
@@ -120,12 +127,26 @@ export default {
      components:{Footer},
     data(){
         return{
-            list:[],
+            //轮播图
             add:[],
+            //名师阵容
             arr:[],
+            //精品课程
             arr1:[],
             arr2:[],
-            arr3:[]
+
+            arr3:[],
+            arr4:[]
+        }
+    },
+    filters:{
+       number(val){
+            if(val == 0){
+                return "免费";
+            }else{
+                return `￥${(val/100).toFixed(2)}`;
+            }
+            return val;
         }
     },
      methods: {
@@ -142,39 +163,45 @@ showConfirmButton:false
       }
     },
     mounted(){
-        this.$axios.get("data.json").then((res)=>{
-         
+        // this.$axios.get("data.json").then((res)=>{
+        // })
+         this.$axios.get("https://www.365msmk.com/api/app/banner").then((res)=>{
+            //  console.log(res.data)
+            this.add=res.data.data
         })
-         this.$axios.get("xlbunner.json").then((res)=>{
-       
-            this.add=res.data.img
+           this.$axios.get("https://www.365msmk.com/api/app/recommend/appIndex").then((res)=>{
+            console.log(res.data.data)
+            // console.log(res.data.data[1].list)
+            this.arr=res.data.data
+            // this.arr1=this.arr.filter((e)=>{
+            //     return e.channel_info.type==1
+            // })
+            // this.arr2=this.arr1[0].list
+            // // console.log(this.arr1[0])
+            // this.arr3=this.arr1
+            // console.log(this.arr3)
+            // this.arr1=res.data.data[1].list 
         })
-           this.$axios.get("./xlimg/xl.json").then((res)=>{
-            console.log(res)
-            this.arr=res.data.name
-        })
-          this.$axios.get("./xlimg/xl2.json").then((res)=>{
-            console.log(res)
-            this.arr1=res.data.name
-        })
-          this.$axios.get("./xlimg/xl2.json").then((res)=>{
-            console.log(res)
-            this.arr2=res.data.name1
-        })
-         this.$axios.get("./xlimg/xl2.json").then((res)=>{
-            console.log(res)
-            this.arr3=res.data.name2
-        })
+        //   this.$axios.get("./xlimg/xl2.json").then((res)=>{
+        //     console.log(res)
+        //     this.arr1=res.data.name
+        // })
+        //   this.$axios.get("./xlimg/xl2.json").then((res)=>{
+        //     console.log(res)
+        //     this.arr2=res.data.name1
+        // })
+        //  this.$axios.get("./xlimg/xl2.json").then((res)=>{
+        //     console.log(res)
+        //     this.arr3=res.data.name2
+        // })
     }
 }
 </script>
 
 <style lang="scss" scoped>
 .block{
-    width: 100%;
-
+    width:100%;
 }
-
 .content{
     background: #f0f2f5;
     img{
@@ -184,37 +211,33 @@ showConfirmButton:false
     .nav{
         width: 100%;
          position: relative;
-  left: 0;
-  top: -0.42rem;
-  z-index: 1000;
+        left: 0;
+        top: -0.42rem;
+        z-index: 1000;
         ul{
-        width: 100%;
-        display: flex;
+            width: 100%;
+            display: flex;
         li{
            width:2.05rem ; 
            height: 2.08rem;
            background: #fff;
-        margin-left: 0.34rem;
-        border-radius: 10%;
-        
+            margin-left: 0.34rem;
+            border-radius: 10%;
         img{
                width: 0.44rem;
                height: 0.44rem;
-               
                 margin-left: 0.80rem;
                 margin-top: 0.56rem;
             }
-            p{
-                  
+            p{  
                 text-align: center;
-           margin-top: 0.3rem;
-             font-size: 0.24rem;
-            font-weight: 400;
-            color: #8c8c8c;
+                margin-top: 0.3rem;
+                font-size: 0.24rem;
+                font-weight: 400;
+                color: #8c8c8c;
             }
         }
     }
-
     }
     .bus{
         width: 100%;
@@ -232,7 +255,7 @@ showConfirmButton:false
                 width: 0.80rem;
             margin-left: 0.3rem;
             height: 0.80rem;
-      margin-top: 0.4rem;
+             margin-top: 0.4rem;
             border-radius: 50%;
             flex: none;
         }
@@ -251,6 +274,11 @@ showConfirmButton:false
  margin-left: 0.24rem;
      margin-top: 0.24rem;
     color: #b7b7b7;
+     overflow: hidden;  
+text-overflow: ellipsis;  
+display: -webkit-box;  
+-webkit-line-clamp: 3;  
+-webkit-box-orient: vertical; 
 
         }
             }
@@ -332,6 +360,7 @@ showConfirmButton:false
                           color: rgba(0,0,0,.45);
                          line-height:0.55rem;
                              font-family: PingFangSC-Regular;
+                            
     
              }
              .p3{
@@ -393,6 +422,12 @@ showConfirmButton:false
                    .p2{
                            color: #b7b7b7;
                              font-size: 0.24rem;
+                              text-overflow: ellipsis;
+                                overflow: hidden;  
+                                text-overflow: ellipsis;  
+                                display: -webkit-box;  
+                                -webkit-line-clamp: 3;  
+                                -webkit-box-orient: vertical; 
                              
                    }
             }

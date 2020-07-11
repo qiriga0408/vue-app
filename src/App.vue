@@ -28,7 +28,7 @@ export default {
     align-items: center;
     color: white;
     position: fixed;
-    top: 1.7rem;
+    top: 8rem;
     right: .5rem;
     z-index: 9999;
   }

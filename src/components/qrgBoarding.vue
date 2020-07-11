@@ -59,7 +59,7 @@ export default {
                 window.localStorage.setItem("remember_token",res.data.data.remember_token)
                 window.localStorage.setItem("userid",res.data.data.id)
                 window.localStorage.setItem("code",this.code)
-                
+                // window.localStorage.getItem("code",this.code)
                 
                 this.$router.push({path:'/qrgSetPassword'})
                 console.log(res.data.data)

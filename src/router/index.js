@@ -27,10 +27,6 @@ import qrgTopic from '@/views/Qrg/qrgTopic'
 
 const qrgMessage = () =>import ('@/components/qrgMessage')
 
-
-const qrgMessage = () =>import ('@/components/qrgMessage')
-
-const qrgMessage =()=>import('@/components/qrgMessage')
 const qrgCodeLogin =()=>import('@/components/qrgCodeLogin')
 const qrgBoarding =()=>import('@/components/qrgBoarding')
 const qrgPassword =()=>import('@/components/qrgPassword')

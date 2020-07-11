@@ -4,7 +4,7 @@ module.exports = {
         proxy: {
             // 配置跨域
             '/api': {
-                target: "https://test.365msmk.com/api/app/login",
+                target: "https://wap.365msmk.com/api/app/banner",
                 ws:true,
                 changOrigin:true,
                 pathRewrite:{
