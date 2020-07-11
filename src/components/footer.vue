@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <van-icon name="contact" />
-                    <router-link to="/Czp">我的</router-link>
+                    <router-link to="/qrgCodeLogin">我的</router-link>
                 </li>
             </ul>
         </footer>

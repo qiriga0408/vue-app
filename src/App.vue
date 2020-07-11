@@ -9,6 +9,7 @@
 
 export default {
   name:"App",
+  
  
 }
 </script>
@@ -27,7 +28,7 @@ export default {
     align-items: center;
     color: white;
     position: fixed;
-    top: 0.7rem;
+    top: 1.7rem;
     right: .5rem;
     z-index: 9999;
   }

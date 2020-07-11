@@ -10,7 +10,7 @@ import Czp from '@/views/Czp'
 
 
 
-  //其日嘎的路由配置
+//其日嘎的路由配置
 import qrgSite from '@/views/Qrg/qrgSite'
 import qrgBank from '@/views/Qrg/qrgSite/qrgBank'
 import qrgBankOne from '@/views/Qrg/qrgSite/qrgBanktwo/qrgBankOne'
@@ -24,7 +24,12 @@ import qrgPractice from '@/views/Qrg/qrgPractice'
 import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
+const qrgMessage = () =>import ('@/components/qrgMessage')
 const qrgMessage =()=>import('@/components/qrgMessage')
+const qrgCodeLogin =()=>import('@/components/qrgCodeLogin')
+const qrgBoarding =()=>import('@/components/qrgBoarding')
+const qrgPassword =()=>import('@/components/qrgPassword')
+const qrgSetPassword =()=>import('@/components/qrgSetPassword')
 
 
 // 张豪的路由
@@ -41,10 +46,9 @@ import Czp_E6 from "@/views/Czp/Czp_E6";
 import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
 
-//孙晓亮的二级路由
-import Sxldsk from "../views/sxl/sxldsk.vue"
-import Sxlyqs from "../views/sxl/sxlyqs.vue"
-import Sxlysk from "../views/sxl/sxlysk.vue"
+
+import SxlYdy from "@/views/sxl/SxlYdy";
+
 
 
 import Xlrl from "../views/xlrl"
@@ -66,9 +70,31 @@ const routes = [{
         component: Xl
     },
     {
-    path: '/Xlrl/:id',
-    name: 'Xlrl',
-    component: Xlrl
+        path: '/Xlrl/:id',
+        name: 'Xlrl',
+        component: Xlrl
+    },
+  
+
+{
+    path:'/qrgCodeLogin',
+    name:'qrgCodeLogin',
+    component:qrgCodeLogin
+},
+{
+    path:'/qrgBoarding',
+    name:'qrgBoarding',
+    component:qrgBoarding
+},
+{
+    path:'/qrgPassword',
+    name:'qrgPassword',
+    component:qrgPassword
+},
+{
+    path:'/qrgSetPassword',
+    name:'qrgSetPassword',
+    component:qrgSetPassword
 },
     {
         path: '/Zh',
@@ -79,42 +105,27 @@ const routes = [{
         path: '/zhedit',
         name: 'Zhedit',
         component: Zhedit
-      },
-      {
+    },
+    {
         path: '/zhseach',
         name: 'Zhseach',
         component: Zhseach
-      },
-      // {
-      //   path: '/zhxf',
-      //   name: 'Zhxf',
-      //   component: Zhxf
-      // },
+    },
+    // {
+    //   path: '/zhxf',
+    //   name: 'Zhxf',
+    //   component: Zhxf
+    // },
     {
         path: '/Sxl',
         name: 'Sxl',
         component: Sxl,
-        children: [
-
-            {
-                path: '/Sxl/Sxldsk',
-                name: 'Sxldsk',
-                component: Sxldsk,
-            },
-            {
-                path: '/Sxl/Sxlysk',
-                name: 'Sxlysk',
-                component: Sxlysk,
-            },
-
-            {
-                path: '/Sxl/Sxlyqs',
-                name: '/Sxlyqs',
-                component: Sxlyqs,
-            },
-        ]
     },
-
+    {
+        path: '/sxl/SxlYdy',
+        name: 'SxlYdy',
+        component: SxlYdy
+    },
     {
         path: '/Czp',
         name: 'Czp',
@@ -133,31 +144,31 @@ const routes = [{
                 name: 'Czp_E2',
                 component: Czp_E2
             },
-			{
-			    path: '/Czp/Czp_E3',
-			    name: 'Czp_E3',
-			    component: Czp_E3
-			},
-			{
-			    path: '/Czp/Czp_E4',
-			    name: 'Czp_E4',
-			    component: Czp_E4
-			},
-			{
-			    path: '/Czp/Czp_E6',
-			    name: 'Czp_E6',
-			    component: Czp_E6
-			},
-			{
-			    path: '/Czp/Czp_E7',
-			    name: 'Czp_E7',
-			    component: Czp_E7
-			},
-			{
-			    path: '/Czp/Czp_E10',
-			    name: 'Czp_E10',
-			    component: Czp_E10
-			},
+            {
+                path: '/Czp/Czp_E3',
+                name: 'Czp_E3',
+                component: Czp_E3
+            },
+            {
+                path: '/Czp/Czp_E4',
+                name: 'Czp_E4',
+                component: Czp_E4
+            },
+            {
+                path: '/Czp/Czp_E6',
+                name: 'Czp_E6',
+                component: Czp_E6
+            },
+            {
+                path: '/Czp/Czp_E7',
+                name: 'Czp_E7',
+                component: Czp_E7
+            },
+            {
+                path: '/Czp/Czp_E10',
+                name: 'Czp_E10',
+                component: Czp_E10
+            },
         ]
     },
     {
@@ -183,27 +194,27 @@ const routes = [{
     },
     //错题练习
     {
-      path:'/qrgTopic',
-      name:'qrgTopic',
-      component:qrgTopic
+        path: '/qrgTopic',
+        name: 'qrgTopic',
+        component: qrgTopic
     },
     //仿真模考
     {
-      path:'/qrgDry',
-      name:'qrgDry',
-      component:qrgDry
+        path: '/qrgDry',
+        name: 'qrgDry',
+        component: qrgDry
     },
     //套卷练习里的搜索
     {
-      path:'/qrgPracticeSerach',
-      name:'qrgPracticeSerach',
-      component:qrgPracticeSerach
+        path: '/qrgPracticeSerach',
+        name: 'qrgPracticeSerach',
+        component: qrgPracticeSerach
     },
     //留言的页面
     {
-      path:'/qrgMessage',
-      name:'qrgMessage',
-      component:qrgMessage
+        path: '/qrgMessage',
+        name: 'qrgMessage',
+        component: qrgMessage
     },
     //考点专练里的
     {
