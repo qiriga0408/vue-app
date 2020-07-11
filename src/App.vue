@@ -9,6 +9,7 @@
 
 export default {
   name:"App",
+  
  
 }
 </script>
@@ -26,8 +27,8 @@ export default {
     justify-content: space-around;
     align-items: center;
     color: white;
-    position: absolute;
-    top: 8.7rem;
+    position: fixed;
+    top: 1.7rem;
     right: .5rem;
     z-index: 9999;
   }

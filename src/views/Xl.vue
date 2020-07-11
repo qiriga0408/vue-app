@@ -114,7 +114,7 @@
 </template>
 <script>
 import Footer from "@/components/footer"
-import axios from "axios"
+// import axios from "axios"
 export default {
     name:"Xl",
      components:{Footer},
