@@ -7,7 +7,7 @@
             <div>
                 <div ref="div1" class="inp">
                     <input v-model="user" placeholder="请输入手机号" />
-                    <span style="color:#FE7D2F" @click="pass">获取验证码</span>
+                    <span :class="flag?'qrg':'qrg1'"  @click="pass">{{tst}}</span>
                 </div>
                 <div ref="div2" class="inp">
                     <input  v-model="code" placeholder="请输入短信验证码" />
@@ -29,7 +29,10 @@ export default {
     data(){
         return{
             user:'',
-            code:''
+            code:'',
+            sj:60,
+            flag:true,
+            tst:"获取验证码"
 
         }
     },
@@ -39,30 +42,59 @@ export default {
         },
         //获取验证码
         pass(){
+       if(this.flag){
             this.$http.post('/api/app/smsCode',{
                 mobile:this.user,
                 sms_type:'login' 
             }).then((res)=>{
+     
+                   this.id=setInterval(()=>{
+                this.sj --
+                this.tst=`发送验证码(${this.sj})`
+    this.flag=false
+                if(this.sj<=0){
+                     this.tst=`发送验证码`
+               this.sj=60
+               this.flag=true
+                    clearInterval(this.id)  
+                        
+                }
+               
+
+            },1000)
+
+           
                 console.log(res)
             }).catch(error=>{
-                console.log(error + "报错了")
-            })
+                console.log(error + "报错了555")
+            }) 
+            }
         },
         //登录
         login(){
+
+
             this.$http.post('/api/app/login',{
                 mobile:this.user,
                 sms_code:this.code,
                 type:2,
                 client:1 
             }).then((res)=>{
+                
                 window.localStorage.setItem("remember_token",res.data.data.remember_token)
                 window.localStorage.setItem("userid",res.data.data.id)
-                window.localStorage.setItem("code",this.code)
+                // window.localStorage.setItem("code",this.code)
                 // window.localStorage.getItem("code",this.code)
+                window.localStorage.setItem("mobile",res.data.data.mobile)
+                window.localStorage.setItem("sms_code",this.code)
+                if(res.data.data.isnew==2){
+                     this.$router.push({path:'/qrgSetPassword'})
+                }else{
+                     this.$router.push({path:'/Czp/Czp_E1'})
+                }
                 
-                this.$router.push({path:'/qrgSetPassword'})
-                console.log(res.data.data)
+                
+               
             }).catch(error=>{
                 console.log(error+"报错了")
             })
@@ -135,5 +167,12 @@ export default {
     background: #FE7D2F;
     margin-top: 1.5rem;
     font-size: 0.6rem;
+}
+.qrg{
+    color:#FE7D2F;
+
+}
+.qrg1{
+    color: grey;
 }
 </style>

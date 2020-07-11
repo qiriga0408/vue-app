@@ -25,7 +25,12 @@ import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
 
-const qrgMessage = () =>import ('@/components/qrgMessage')
+
+
+
+
+
+const qrgMessage =()=>import('@/components/qrgMessage')
 
 const qrgCodeLogin =()=>import('@/components/qrgCodeLogin')
 const qrgBoarding =()=>import('@/components/qrgBoarding')
@@ -46,6 +51,7 @@ import Czp_E4 from "@/views/Czp/Czp_E4";
 import Czp_E6 from "@/views/Czp/Czp_E6";
 import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
+import Xg from "@/views/Czp/xiugai";
 
 
 import SxlYdy from "@/views/sxl/SxlYdy";
@@ -131,12 +137,17 @@ const routes = [{
         path: '/zhseach',
         name: 'Zhseach',
         component: Zhseach
-    },
+
+      },
+    
+
+    
     // {
     //   path: '/zhxf',
     //   name: 'Zhxf',
     //   component: Zhxf
     // },
+
     {
         path: '/Sxl',
         name: 'Sxl',
@@ -165,6 +176,37 @@ const routes = [{
                 name: 'Czp_E2',
                 component: Czp_E2
             },
+
+			{
+			    path: '/Czp/Czp_E3',
+			    name: 'Czp_E3',
+			    component: Czp_E3
+			},
+			{
+			    path: '/Czp/Czp_E4',
+			    name: 'Czp_E4',
+			    component: Czp_E4
+			},
+			{
+			    path: '/Czp/Czp_E6',
+			    name: 'Czp_E6',
+			    component: Czp_E6
+			},
+			{
+			    path: '/Czp/Czp_E7',
+			    name: 'Czp_E7',
+			    component: Czp_E7
+			},
+			{
+			    path: '/Czp/Czp_E10',
+			    name: 'Czp_E10',
+			    component: Czp_E10
+            },
+            {
+                path: '/Czp/xg',
+                name: 'Xg',
+                component: Xg
+              },
             {
                 path: '/Czp/Czp_E3',
                 name: 'Czp_E3',

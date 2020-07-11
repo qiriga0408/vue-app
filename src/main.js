@@ -11,10 +11,13 @@ import './css/reset.css'
 import 'swiper/css/swiper.min.css'
 
 import http from './util/http'
+
 Vue.prototype.$http = http
 
 
-import axios from 'axios' 
+ 
+import axios from 'axios' 
+
 Vue.prototype.$axios=axios
 
 

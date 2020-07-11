@@ -208,7 +208,7 @@
             ul{
                 width: 90%;
                 height: 1.5rem;
-                margin: 0.15rem auto;
+                margin: 0.75rem auto;
                 label{
                     height: 40px;
                     display: flex;

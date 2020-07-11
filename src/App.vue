@@ -18,6 +18,7 @@ export default {
 #app{
   width: 100%;
   height: 100%;
+  
   .liu{
     width: 1rem;
     height: .5rem;
@@ -28,7 +29,7 @@ export default {
     align-items: center;
     color: white;
     position: fixed;
-    top: 8rem;
+    top: 1.7rem;
     right: .5rem;
     z-index: 9999;
   }
