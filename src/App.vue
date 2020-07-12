@@ -6,9 +6,9 @@
 
      <div id="webid">
         <div class="minbox" id="box"
-                  @mousedown="down()" @touchstart="down()"
-                  @mousemove="move()" @touchmove="move()"
-                  @mouseup="end()" @touchend="end()" 
+                  @mousedown.prevent="down()" @touchstart.prevent="down()"
+                  @mousemove.prevent="move()" @touchmove.prevent="move()"
+                  @mouseup.prevent="end()" @touchend.prevent="end()" 
         >
           <router-link :to="{path:'/qrgMessage'}" >
           <img src="zhimg/zh8.png" alt="">
@@ -95,8 +95,7 @@ export default {
 #app{
   width: 100%;
   height: 100%;
-  
- 
+
   #shouye{
     width: 100%;
     height: 100%;
@@ -152,17 +151,19 @@ export default {
        
     }
 }
+#webid{
+  position: relative;
 }
-#webid { 
-  position: relative; 
-  
-  }
 .minbox{
-    width: 1.2rem;
-    height: 1.2rem;
-    z-index: 999;
-    position: fixed;
-    left: 6rem;
-    top: 8rem;
+  width:1.2rem ;
+//   width: 1.2rem;
+height: 1.2rem;
+z-index: 9999;
+position: fixed;
+left: 6rem;
+top: 8rem;
+
+}
+
 }
 </style>

@@ -19,7 +19,8 @@
 				
 	
 				
-				<button>退出登录</button>
+				
+				<button @click="dj">退出登录</button>
 			</div>
 		</main>
 	</div>
@@ -32,8 +33,10 @@ export default {
 		    onClickLeft(){
 		      this.$router.push('/Czp');
 				},
-				ss(){
-					  this.$router.push({path:'/Czp/xg'})
+				
+				dj(){
+					window.localStorage.removeItem('remember_token')
+					  this.$router.push({path:'/xl'}) 
 				}
 		},
 	}

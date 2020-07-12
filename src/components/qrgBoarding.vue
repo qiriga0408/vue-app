@@ -85,6 +85,7 @@ export default {
                 window.localStorage.setItem("userid",res.data.data.id)
                 // window.localStorage.setItem("code",this.code)
                 // window.localStorage.getItem("code",this.code)
+
                 window.localStorage.setItem("mobile",res.data.data.mobile)
                 window.localStorage.setItem("sms_code",this.code)
                 if(res.data.data.isnew==2){

@@ -20,7 +20,9 @@
             
             </li>
             <!-- <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" > -->
-            <li>
+            <!-- <li> -->
+            <li @click="int">  <img src="xlimg/未标题-3.jpg" alt="" >
+
               <p>学习日历</p>
             </li>
         </ul>
@@ -35,8 +37,10 @@
         {{item.channel_info.name}}
         <!-- 推荐课程 -->
     </p>
-        <ul v-if="item.channel_info.type==3">
-            <li  v-for="(v,i) in item.list" :key="i"  >
+       
+  
+           <ul v-if="item.channel_info.type==3" >
+            <li  v-for="(v,i) in item.list" :key="i"  @click="ss?open():jj()" >
                 <img :src="v.teacher_avatar" alt="">
                 <p>
                    <span>
@@ -50,6 +54,8 @@
             </li>
           
         </ul>
+ 
+      
         
 
     </div>    
@@ -100,8 +106,10 @@
         </span>
         <!-- 明星讲师 -->
     </p>
-        <ul  v-if="item.channel_info.type==4">
-            <li v-for="(v,i) in item.list" :key="i" >
+        
+        
+ <ul  v-if="item.channel_info.type==4">
+            <li v-for="(v,i) in item.list" :key="i" @click="open" >
                 <div>
                     <img :src="v.teacher_avatar" alt="">
                 </div>
@@ -112,6 +120,8 @@
                 
             </li>
         </ul>
+ 
+       
       </div>
     </div>
         </div>
@@ -136,7 +146,8 @@ export default {
             arr2:[],
 
             arr3:[],
-            arr4:[]
+            arr4:[],
+          ss:true
         }
     },
     filters:{
@@ -149,16 +160,19 @@ export default {
             return val;
         }
     },
+
+    
+            // console.log(v)
+    created(){
+              var kk=window.localStorage.getItem("remember_token")
+        if(kk){
+         this.ss=false
+        }else{
+              this.ss=true 
+        }
+    },
      methods: {
-//       open() {
-          
-//          this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
-//           dangerouslyUseHTMLString: true,
-// showConfirmButton:false
-      
-//         });
-//       },
-      cc(v){
+           cc(v){
             // this.$router.push({path:`/Xlrl/${v}`})
             this.$router.push({
                 path:'/Xlrl',
@@ -166,7 +180,21 @@ export default {
                     id:v
                 }
             })
-            // console.log(v)
+           },
+      open() {
+          
+         this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/qrgCodeLogin"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
+          dangerouslyUseHTMLString: true,
+showConfirmButton:false
+      
+        });
+      },
+      int(){
+          this.$router.push({path:'/qrgCalendar'})
+      },
+      jj(){
+
+          this.$router.push({path:'/Xlrl'}) 
       }
     },
     mounted(){

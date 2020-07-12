@@ -106,7 +106,7 @@ export default {
             this.arr1.push(res.data.data.info)
             console.log(this.arr1)
   console.log(this.arr2)
-  this.arr2.push(res.data.data.teachers[0])
+        this.arr2.push(res.data.data.teachers[0])
           
          })
     }

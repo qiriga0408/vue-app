@@ -5,7 +5,8 @@
             <div class="login_top">
                 <label for="">
                     <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
-                    <router-link to="/Czp/Czp_E2" tag="span">登录/注册</router-link>
+              
+                    <router-link to="/Czp/Czp_E2" tag="span">{{ss}}</router-link>
                 </label>
             </div>
             <div class="login_bottom">
@@ -83,6 +84,11 @@
 
     export default {
         name:"Czp_E1",
+        data(){
+            return{
+                ss:window.localStorage.getItem('mobile')
+            }
+        }
     }
 </script>
 <style lang="scss" scoped>
