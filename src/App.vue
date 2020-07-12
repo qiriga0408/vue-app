@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<div id="app">
 		<!-- <router-link tag="div" :to="{path:'/qrgMessage'}" class="liu">留言</router-link> -->
 		<router-view></router-view>
@@ -11,6 +12,28 @@
 			</div>
 		</div>
 	</div>
+=======
+  <div id="app">
+    <!-- <router-link tag="div" :to="{path:'/qrgMessage'}" class="liu">留言</router-link> -->
+   
+    <router-view></router-view>
+
+     <div id="webid">
+        <div class="minbox" id="box"
+                  @mousedown.prevent="down()" @touchstart="down()"
+                  @mousemove.prevent="move()" @touchmove.prevent="move()"
+                  @mouseup.prevent="end()" @touchend="end()" 
+        >
+          <router-link :to="{path:'/qrgMessage'}" >
+              <img src="zhimg/zh8.png" alt="">
+          </router-link>
+        
+        </div>
+        
+    </div>
+    
+  </div>
+>>>>>>> a4d21323e8b3fc8c75acf46c4200dabb3dcc651d
 </template>
 <script>
 	export default {
