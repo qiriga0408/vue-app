@@ -4,20 +4,20 @@
           <span><img src="xlimg/555.jpg" alt="" class="ss1" @click="fh"></span>
           课程详情
           <span><img src="xlimg/999.jpg" alt="" class="ss"></span>
-         
+
       </header>
       <div class="nav">
             <ul>
                 <li v-for="(item,key) in arr1" :key="key">
-                    <p class="p1">{{item.title}} 
+                    <p class="p1">{{item.title}}
 
                         <span class='el-icon-star-off' v-if="ss" @click="ss1"></span>
                          <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span>
                      </p>
-                      <p class="p2">{{item.price|number()}}</p> 
-                    <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p> 
-                 </li> 
-           
+                      <p class="p2">{{item.price|number()}}</p>
+                    <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p>
+                 </li>
+
         </ul>
       </div>
        <div class="d1">
@@ -31,23 +31,23 @@
             </li>
         </ul>
             </div>
-            
-        </div> 
+
+        </div>
            <div class="d2">
             <div class="nav">
                <p>课程介绍</p>
                 <li v-for="(v,i) in arr1" :key="i">
-            
+
                 <span v-html="v.course_details"></span>
             </li>
             </div>
-            
-        </div> 
+
+        </div>
          <div class="d3">
             <div class="nav">
                <p>课程大纲</p>
                 <li v-for="(v,i) in arr1" :key="i">
-            
+
                 <span v-html="v.course_details"></span>
             </li>
             </div>
@@ -57,10 +57,10 @@
             <div class="nav">
                <p>课程评论</p>
              <img src="xlimg/微信图片_20200707160813.png" alt="">
-         
+
             </div>
-      
-        </div> 
+
+        </div>
           <el-footer class="f">立即报名</el-footer>
   </div>
 </template>
@@ -76,7 +76,7 @@ export default {
         ss:true
 
         }
-        
+
     },
 
     methods:{
@@ -85,7 +85,7 @@ export default {
         },
         ss1(){
             this.ss=!this.ss
-       
+
         }
 },
   filters:{
@@ -102,12 +102,12 @@ export default {
         this.id=this.$route.query.id
         // console.log(this.id)
           this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
-            console.log(res) 
+            console.log(res)
             this.arr1.push(res.data.data.info)
             console.log(this.arr1)
   console.log(this.arr2)
         this.arr2.push(res.data.data.teachers[0])
-          
+
          })
     }
 }
@@ -121,7 +121,7 @@ export default {
         justify-content: space-between;
         font-size: 0.36rem;
       margin-top: 0.28rem;
-      
+
         .ss1{
           width: 0.22rem;
           height: 0.35rem;
@@ -130,8 +130,8 @@ export default {
          .ss{
           width: 0.33rem;
           height: 0.39rem;
-margin-right: 0.23rem; 
-          
+margin-right: 0.23rem;
+
         }
     }
     .nav{
@@ -142,7 +142,7 @@ margin-right: 0.23rem;
     font-family: PingFangSC-Medium;
     font-weight: 400;
     display: flex;
-   
+
         }
         .p2{
                 font-family: PingFangSC-Medium;
@@ -200,7 +200,7 @@ margin-right: 0.23rem;
     .d2{
           width: 100%;
         height: 1.86rem;
-     
+
         border-bottom: 30px solid #f0f2f5;
         p{
                 font-family: PingFangSC-Medium;
@@ -218,20 +218,20 @@ margin-right: 0.23rem;
             display: block;
             margin-left: 0.05rem;
         }
-     
+
     }
 
     .d3{
           width: 100%;
         height: 2.38rem;
          position: relative;
-        border-bottom: 30px solid #f0f2f5;         
+        border-bottom: 30px solid #f0f2f5;
            font-family: PingFangSC-Medium;
     font-weight: 500;
     color: #262626;
 
         p{
-    
+
     font-size: 0.3rem;
     margin-top: 0.3rem;
         }
@@ -244,8 +244,8 @@ margin-right: 0.23rem;
                 line-height: 8vw;
                 margin-top: 0.2rem;
         }
-       
-     
+
+
     }
     .o{
             content: "";
@@ -262,22 +262,22 @@ margin-right: 0.23rem;
     }
      .d4{
           width: 100%;
- 
-        border-bottom: 30px solid #f0f2f5;         
+
+        border-bottom: 30px solid #f0f2f5;
            font-family: PingFangSC-Medium;
     font-weight: 500;
     color: #262626;
 
         p{
-    
+
     font-size: 0.3rem;
     margin-top: 0.3rem;
         }
-      
+
      img{
        margin-left: 1.8rem;
-     }  
-     
+     }
+
     }
     .f{
         color: #fff;
