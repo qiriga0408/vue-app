@@ -1,59 +1,49 @@
 <template>
     <div id="shouye">
         <div class="content">
-   <div class="block">
-    <el-carousel height=" 53.3vw"  width="100%">
-      <el-carousel-item v-for="(v,i) in add" :key="i">
-        <img :src="v.banner_img" alt="" width="100%" height="100%" >
-      </el-carousel-item>
-    </el-carousel>
-  </div>
-   <div class="nav">
-        <ul>
-            <li>
-                <router-link to="/Zh">
-                <img src="xlimg/未标题-1.jpg" alt="" >
-                <p>特色课</p></router-link>
-            </li>
-            <li> <img src="xlimg/未标题-2.jpg" alt="">
-                    <p>一对一辅导</p>
-            
-            </li>
-            <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" >
-
-              <p>学习日历</p>
-            </li>
-        </ul>
-    </div>
-   
-   <div class="box" v-for="(item,key) in arr" :key="key">
-    <div class="bus" >
-         <p class="s1">
-        <span>
-            
-        </span>
-        {{item.channel_info.name}}
-        <!-- 推荐课程 -->
-    </p>
-        <ul v-if="item.channel_info.type==3">
-            <li  v-for="(v,i) in item.list" :key="i"  @click="open">
-                <img :src="v.teacher_avatar" alt="">
-                <p>
-                   <span>
-                    {{v.teacher_name}}
-                </span>
-                <span>
-                    {{v.introduction}}
-                </span> 
+           <div class="block">
+            <el-carousel height=" 53.3vw"  width="100%">
+              <el-carousel-item v-for="(v,i) in add" :key="i">
+                <img :src="v.banner_img" alt="" width="100%" height="100%" >
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+           <div class="nav">
+                <ul>
+                    <li>
+                        <router-link to="/Zh">
+                        <img src="xlimg/未标题-1.jpg" alt="" >
+                        <p>特色课</p></router-link>
+                    </li>
+                    <li> <img src="xlimg/未标题-2.jpg" alt="">
+                            <p>一对一辅导</p>
+                    </li>
+                    <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" >
+                      <p>学习日历</p>
+                    </li>
+                </ul>
+            </div>
+           <div class="box" v-for="(item,key) in arr" :key="key">
+            <div class="bus" >
+                 <p class="s1">
+                <span></span>
+                {{item.channel_info.name}}
+                <!-- 推荐课程 -->
                 </p>
-                
-            </li>
-          
-        </ul>
-        
-
-    </div>    
-    
+                <ul v-if="item.channel_info.type==3">
+                    <router-link :to="{path:'/teacher',query:{id:v.teacher_id}}" tag="li" v-for="(v,i) in item.list" :key="i"  @click="open">
+                        <img :src="v.teacher_avatar" alt="">
+                        <p>
+                           <span>
+                            {{v.teacher_name}}
+                        </span>
+                        <span>
+                            {{v.introduction}}
+                        </span>
+                        </p>
+                    </router-link>
+                </ul>
+            </div>
 <div class="jp">
          <p class="s1">
         <span>
@@ -115,7 +105,6 @@
       </div>
     </div>
         </div>
-
         <Footer></Footer>
     </div>
 </template>
@@ -151,12 +140,11 @@ export default {
     },
      methods: {
       open() {
-          
-         this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
-          dangerouslyUseHTMLString: true,
-showConfirmButton:false
-      
-        });
+//          this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
+//           dangerouslyUseHTMLString: true,
+// showConfirmButton:false
+//
+//         });
       },
       cc(v){
             this.$router.push({path:`/Xlrl/${v}`})
@@ -274,16 +262,16 @@ showConfirmButton:false
  margin-left: 0.24rem;
      margin-top: 0.24rem;
     color: #b7b7b7;
-     overflow: hidden;  
-text-overflow: ellipsis;  
-display: -webkit-box;  
--webkit-line-clamp: 3;  
--webkit-box-orient: vertical; 
+     overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 
         }
             }
         }
-        
+
     }
    .s1{
            font-family: PingFangSC-Medium;

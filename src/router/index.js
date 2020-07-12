@@ -52,7 +52,7 @@ import Czp_E6 from "@/views/Czp/Czp_E6";
 import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
 import Xg from "@/views/Czp/xiugai";
-
+import teacher from "../views/teacher";
 
 import SxlYdy from "@/views/sxl/SxlYdy";
 
@@ -71,10 +71,16 @@ Vue.use(VueRouter)
 //   // which is lazy-loaded when the route is visited.
 //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
 // }
-const routes = [{
+const routes = [
+    {
         path: '/Xl',
         name: 'Xl',
         component: Xl
+    },
+    {
+        path: '/teacher',
+        name: 'teacher',
+        component: teacher
     },
     {
 

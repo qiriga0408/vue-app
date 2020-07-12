@@ -10,7 +10,7 @@ localStorage.DeviceID = DeviceID;
     }
 let ID =DeviceID;
 
-console.log(ID)
+// console.log(ID)
 axios.defaults.baseURL="https://www.365msmk.com";
 // axios.defaults.baseURL = 'http://120.53.31.103:84';
 
