@@ -6,12 +6,12 @@
 
      <div id="webid">
         <div class="minbox" id="box"
-                  @mousedown.prevent="down()" @touchstart.prevent="down()"
+                  @mousedown.prevent="down()" @touchstart="down()"
                   @mousemove.prevent="move()" @touchmove.prevent="move()"
-                  @mouseup.prevent="end()" @touchend.prevent="end()" 
+                  @mouseup.prevent="end()" @touchend="end()" 
         >
           <router-link :to="{path:'/qrgMessage'}" >
-          <img src="zhimg/zh8.png" alt="">
+              <img src="zhimg/zh8.png" alt="">
           </router-link>
         
         </div>
