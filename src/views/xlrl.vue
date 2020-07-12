@@ -8,43 +8,47 @@
       </header>
       <div class="nav">
             <ul>
-            <li v-for="(v,i) in arr2" :key="i">
-                <p class="p1">每时每课特级教师-{{v.nr}} <span class='el-icon-star-off' v-if="ss" @click="ss1"></span> <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span></p>
-                <p class="p2">{{v.jj}}</p>
-                <p class="p3">{{v.ks}}|{{v.num}}</p>
+                <li v-for="(item,key) in arr1" :key="key">
+                    <p class="p1">{{item.title}} 
+
+                        <span class='el-icon-star-off' v-if="ss" @click="ss1"></span>
+                         <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span>
+                     </p>
+                      <p class="p2">{{item.price|number()}}</p> 
+                    <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p> 
+                 </li> 
            
-            </li>
         </ul>
       </div>
-        <div class="d1">
+       <div class="d1">
             <div class="nav">
                 <p>教学团队</p>
 
                   <ul>
             <li v-for="(v,i) in arr2" :key="i">
-               <img :src="v.img" alt="">
-                <span>{{v.name}}</span>
+               <img :src="v.avatar" alt="">
+                <span>{{v.teacher_name}}</span>
             </li>
         </ul>
             </div>
             
-        </div>
-          <div class="d2">
+        </div> 
+           <div class="d2">
             <div class="nav">
                <p>课程介绍</p>
-                <li v-for="(v,i) in arr2" :key="i">
+                <li v-for="(v,i) in arr1" :key="i">
             
-                <span>{{v.nr}}</span>
+                <span v-html="v.course_details"></span>
             </li>
             </div>
             
-        </div>
+        </div> 
          <div class="d3">
             <div class="nav">
                <p>课程大纲</p>
-                <li v-for="(v,i) in arr2" :key="i">
+                <li v-for="(v,i) in arr1" :key="i">
             
-                <span>{{v.nr}}</span>
+                <span v-html="v.course_details"></span>
             </li>
             </div>
             <i class="o"></i>
@@ -56,7 +60,7 @@
          
             </div>
       
-        </div>
+        </div> 
           <el-footer class="f">立即报名</el-footer>
   </div>
 </template>
@@ -84,34 +88,25 @@ export default {
        
         }
 },
- mounted(){
-        this.id=this.$route.params.id
-
-          this.$axios.get("./xlimg/xl2.json").then((res)=>{
-            console.log(res)
-            if(this.id<=6){
-  this.arr1=res.data.name
-
-            var ss=this.arr1.filter((e)=>{
-                return e.id==this.id
-            })
-    console.log(this.id)
-
-         this.arr2=ss
-            console.log(this.arr2)
-       
+  filters:{
+       number(val){
+            if(val == 0){
+                return "免费";
             }else{
-                this.arr1=res.data.name1
-
-            var ss=this.arr1.filter((e)=>{
-                return e.id==this.id
-            })
-    console.log(this.id)
-
-         this.arr2=ss
-            console.log(this.arr2)
-       
+                return `￥${(val/100).toFixed(2)}`;
             }
+            return val;
+        }
+    },
+ mounted(){
+        this.id=this.$route.query.id
+        // console.log(this.id)
+          this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
+            console.log(res) 
+            this.arr1.push(res.data.data.info)
+            console.log(this.arr1)
+  console.log(this.arr2)
+  this.arr2.push(res.data.data.teachers[0])
           
          })
     }

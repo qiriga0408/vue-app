@@ -78,7 +78,7 @@ const routes = [{
     },
     {
 
-        path: '/Xlrl/:id',
+        path: '/Xlrl',
         name: 'Xlrl',
         component: Xlrl
     }, 

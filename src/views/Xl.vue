@@ -19,8 +19,8 @@
                     <p>一对一辅导</p>
             
             </li>
-            <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" >
-
+            <!-- <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" > -->
+            <li>
               <p>学习日历</p>
             </li>
         </ul>
@@ -36,7 +36,7 @@
         <!-- 推荐课程 -->
     </p>
         <ul v-if="item.channel_info.type==3">
-            <li  v-for="(v,i) in item.list" :key="i"  @click="open">
+            <li  v-for="(v,i) in item.list" :key="i"  >
                 <img :src="v.teacher_avatar" alt="">
                 <p>
                    <span>
@@ -101,7 +101,7 @@
         <!-- 明星讲师 -->
     </p>
         <ul  v-if="item.channel_info.type==4">
-            <li v-for="(v,i) in item.list" :key="i" @click="open">
+            <li v-for="(v,i) in item.list" :key="i" >
                 <div>
                     <img :src="v.teacher_avatar" alt="">
                 </div>
@@ -150,16 +150,23 @@ export default {
         }
     },
      methods: {
-      open() {
+//       open() {
           
-         this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
-          dangerouslyUseHTMLString: true,
-showConfirmButton:false
+//          this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
+//           dangerouslyUseHTMLString: true,
+// showConfirmButton:false
       
-        });
-      },
+//         });
+//       },
       cc(v){
-            this.$router.push({path:`/Xlrl/${v}`})
+            // this.$router.push({path:`/Xlrl/${v}`})
+            this.$router.push({
+                path:'/Xlrl',
+                query:{
+                    id:v
+                }
+            })
+            // console.log(v)
       }
     },
     mounted(){
