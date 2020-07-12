@@ -33,11 +33,14 @@
                     <van-tab title="讲师介绍" class="tabsss">
                         <ul>
                             <li v-for="(item,index) in tabs1" :key="index">
-                                <span>{{item.attr_name}}</span>
-                                <span>{{item.attr_value[0].attr_value_name}}</span>
+                                <span>{{item.attr_name}}:</span>
+                                <a>{{item.attr_value[0].attr_value_name}}</a>
                             </li>
                         </ul>
-                        <a v-for="(it,ind) in tabs2" :key="ind">{{it}}</a>
+						<s>老师简介:</s>
+                        <div class="a">
+							{{tabs2}}
+						</div>
                     </van-tab>
                     <van-tab title="主讲课程" class="tab2">
                         <ul>
@@ -104,7 +107,7 @@
             let id = this.$route.query.id;
             //导航
             this.$axios.get("https://www.365msmk.com/api/app/teacher/"+id).then((res)=>{
-                console.log(res.data.data.teacher);
+                // console.log(res.data.data.teacher);
                 this.nav1.push(res.data.data.teacher);
                 this.nav11.push(res.data.data.teacher);
                 this.nav2 = res.data.data.teacher.tag_content;
@@ -113,7 +116,7 @@
             })
             //介绍
             this.$axios.get("https://www.365msmk.com/api/app/teacher/info/"+id).then((res)=>{
-                // console.log(res);
+                console.log(res);
                 this.tabs1 = res.data.data.attr;
                 this.tabs2 = res.data.data.intro;
             }).catch((error)=>{
@@ -237,18 +240,32 @@
             .tabsss{
                 ul{
                     li{
-                        /*background: red;*/
-                        margin-top: .3rem;
+                        // margin-top: .3rem;
                         color: grey;
                         span{
-                            /*font-size: .22rem;  */
+                            font-size: 0.16rem; 
+							padding-left: 0.35rem;
                         }
-                        a{
-                            margin-top: .2rem;
-                        }
-
+						a{
+							font-size: 0.16rem;
+						}
                     }
                 }
+				s{
+					font-size: 0.16rem;
+					padding: 0.35rem 0.35rem;
+					text-decoration: none;
+					color: grey;
+				}
+				.a{
+				    width: 75%;
+					height: 0.5rem;
+					margin: 0 auto;
+					text-align: center;
+					line-height: 0.5rem;
+					font-size: 0.12rem;
+					color: grey;	
+				}
             }
             .tab2{
                 ul{
