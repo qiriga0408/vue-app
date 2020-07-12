@@ -213,8 +213,10 @@ export default {
           xf(){
             this.$router.push("/zhxf")
           },
-          onClick(name, title) {
+         
                
+          onClick(name, title) { 
+            
             },
     },
   

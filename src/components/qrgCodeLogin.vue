@@ -46,8 +46,11 @@ export default {
             }).then((res)=>{
              
                 console.log(res)
+                window.localStorage.setItem("remember_token",res.data.data.remember_token)
+              
+ window.localStorage.setItem("mobile",res.data.data.mobile)
                 if(res.data.code==200){
-this.$router.push({path:'/Czp/Czp_E1'}) 
+                    this.$router.push({path:'/Czp/Czp_E1'}) 
                 }else{
                     alert("账号密码不正确")
                 }

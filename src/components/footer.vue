@@ -18,17 +18,35 @@
                      <van-icon name="records" />
                     <router-link to="/Qrg">练习</router-link>
                 </li>
-                <li>
+                    
+                <li @click="ss">
                     <van-icon name="contact" />
-                    <router-link to="/qrgCodeLogin">我的</router-link>
+                    我的
+        
                 </li>
             </ul>
         </footer>
     </div>
 </template>
+
+
 <script>
 export default {
-    name:"Footer"
+    name:"Footer",
+
+    methods:{
+    ss(){
+         var xl=window.localStorage.getItem("remember_token")
+        if(xl){
+           
+        this.$router.push({path:'/Czp/Czp_E1'}) 
+        }else{
+             this.$router.push({path:'/qrgCodeLogin'}) 
+        }
+        
+    }
+    } 
+   
 }
 </script>
 <style lang="scss" scoped>

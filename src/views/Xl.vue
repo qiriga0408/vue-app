@@ -1,6 +1,7 @@
 <template>
     <div id="shouye">
         <div class="content">
+<<<<<<< HEAD
            <div class="block">
             <el-carousel height=" 53.3vw"  width="100%">
               <el-carousel-item v-for="(v,i) in add" :key="i">
@@ -44,6 +45,67 @@
                     </router-link>
                 </ul>
             </div>
+=======
+   <div class="block">
+    <el-carousel height=" 53.3vw"  width="100%">
+      <el-carousel-item v-for="(v,i) in add" :key="i">
+        <img :src="v.banner_img" alt="" width="100%" height="100%" >
+      </el-carousel-item>
+    </el-carousel>
+  </div>
+   <div class="nav">
+        <ul>
+            <li>
+                <router-link to="/Zh">
+                <img src="xlimg/未标题-1.jpg" alt="" >
+                <p>特色课</p></router-link>
+            </li>
+            <li> <img src="xlimg/未标题-2.jpg" alt="">
+                    <p>一对一辅导</p>
+            
+            </li>
+            <!-- <li @click="open">  <img src="xlimg/未标题-3.jpg" alt="" > -->
+            <!-- <li> -->
+            <li @click="int">  <img src="xlimg/未标题-3.jpg" alt="" >
+
+              <p>学习日历</p>
+            </li>
+        </ul>
+    </div>
+   
+   <div class="box" v-for="(item,key) in arr" :key="key">
+    <div class="bus" >
+         <p class="s1">
+        <span>
+            
+        </span>
+        {{item.channel_info.name}}
+        <!-- 推荐课程 -->
+    </p>
+       
+  
+           <ul v-if="item.channel_info.type==3" >
+            <li  v-for="(v,i) in item.list" :key="i"  @click="ss?open():jj()" >
+                <img :src="v.teacher_avatar" alt="">
+                <p>
+                   <span>
+                    {{v.teacher_name}}
+                </span>
+                <span>
+                    {{v.introduction}}
+                </span> 
+                </p>
+                
+            </li>
+          
+        </ul>
+ 
+      
+        
+
+    </div>    
+    
+>>>>>>> a2d981d315d82b2745b9ea8357ac5f6c3ad65b0c
 <div class="jp">
          <p class="s1">
         <span>
@@ -90,8 +152,10 @@
         </span>
         <!-- 明星讲师 -->
     </p>
-        <ul  v-if="item.channel_info.type==4">
-            <li v-for="(v,i) in item.list" :key="i" @click="open">
+        
+        
+ <ul  v-if="item.channel_info.type==4">
+            <li v-for="(v,i) in item.list" :key="i" @click="open" >
                 <div>
                     <img :src="v.teacher_avatar" alt="">
                 </div>
@@ -102,6 +166,8 @@
                 
             </li>
         </ul>
+ 
+       
       </div>
     </div>
         </div>
@@ -125,7 +191,8 @@ export default {
             arr2:[],
 
             arr3:[],
-            arr4:[]
+            arr4:[],
+          ss:true
         }
     },
     filters:{
@@ -138,16 +205,49 @@ export default {
             return val;
         }
     },
+
+    
+            // console.log(v)
+    created(){
+              var kk=window.localStorage.getItem("remember_token")
+        if(kk){
+         this.ss=false
+        }else{
+              this.ss=true 
+        }
+    },
      methods: {
+           cc(v){
+            // this.$router.push({path:`/Xlrl/${v}`})
+            this.$router.push({
+                path:'/Xlrl',
+                query:{
+                    id:v
+                }
+            })
+           },
       open() {
+<<<<<<< HEAD
 //          this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/Czp/Czp_E1"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
 //           dangerouslyUseHTMLString: true,
 // showConfirmButton:false
 //
 //         });
+=======
+          
+         this.$alert('<strong><img src="xlimg/微信图片_20200707110852.png" alt=""  width="100%">  <a href="http://localhost:8080/#/qrgCodeLogin"><button style=" height: 0.66rem;    margin-left: 0.36rem; background: #eb6100; color: #fff;  width: 3rem; font-size: 0.26rem;font-weight: 400; border-radius: 5.33333vw;">立刻登录</button></a>', {
+          dangerouslyUseHTMLString: true,
+showConfirmButton:false
+      
+        });
+>>>>>>> a2d981d315d82b2745b9ea8357ac5f6c3ad65b0c
       },
-      cc(v){
-            this.$router.push({path:`/Xlrl/${v}`})
+      int(){
+          this.$router.push({path:'/qrgCalendar'})
+      },
+      jj(){
+
+          this.$router.push({path:'/Xlrl'}) 
       }
     },
     mounted(){

@@ -24,10 +24,7 @@ import qrgPractice from '@/views/Qrg/qrgPractice'
 import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
-
-
-
-
+import qrgCalendar from '@/views/Qrg/qrgCalendar'
 
 
 const qrgMessage =()=>import('@/components/qrgMessage')
@@ -84,7 +81,7 @@ const routes = [
     },
     {
 
-        path: '/Xlrl/:id',
+        path: '/Xlrl',
         name: 'Xlrl',
         component: Xlrl
     }, 
@@ -102,6 +99,11 @@ const routes = [
     path:'/qrgPassword',
     name:'qrgPassword',
     component:qrgPassword
+},
+{
+    path:'/qrgCalendar',
+    name:'qrgCalendar',
+    component:qrgCalendar
 },
 {
     path:'/qrgSetPassword',
