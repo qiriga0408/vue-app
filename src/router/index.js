@@ -27,12 +27,14 @@ import qrgTopic from '@/views/Qrg/qrgTopic'
 import qrgCalendar from '@/views/Qrg/qrgCalendar'
 
 
-const qrgMessage =()=>import('@/components/qrgMessage')
 
+const qrgMessage =()=>import('@/components/qrgMessage')
 const qrgCodeLogin =()=>import('@/components/qrgCodeLogin')
 const qrgBoarding =()=>import('@/components/qrgBoarding')
 const qrgPassword =()=>import('@/components/qrgPassword')
 const qrgSetPassword =()=>import('@/components/qrgSetPassword')
+const qrgRecod =()=> import ('@/views/Qrg/qrgRecod')
+
 
 
 // 张豪的路由
@@ -100,6 +102,11 @@ const routes = [
     path:'/qrgBoarding',
     name:'qrgBoarding',
     component:qrgBoarding
+},
+{
+    path:'/qrgRecod',
+    name:'qrgRecod',
+    component:qrgRecod
 },
 {
     path:'/qrgPassword',

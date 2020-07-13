@@ -22,7 +22,7 @@
                         <img src="/qrgImg/qrg-4.png" alt="">
                         <p>错题练习</p>
                     </router-link>
-                  
+                
                 </div>
                 <div class="content-one-t">
                     <div class="content-one-t-img">
@@ -60,7 +60,7 @@ export default {
       }
     },
     methods:{
-      
+    
     }
 }
 </script>

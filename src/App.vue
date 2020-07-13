@@ -3,7 +3,6 @@
     <!-- <router-link tag="div" :to="{path:'/qrgMessage'}" class="liu">留言</router-link> -->
    
     <router-view></router-view>
-
      <!-- <div id="webid">
         <div class="minbox" id="box"
                   @mousedown.prevent="down()" @touchstart="down()"

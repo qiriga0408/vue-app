@@ -1,41 +1,37 @@
 <template>
-  <div>
-      <header>
-          <span><img src="xlimg/555.jpg" alt="" class="ss1" @click="fh"></span>
-          课程详情
-          <span><img src="xlimg/999.jpg" alt="" class="ss"></span>
-
-      </header>
-      <div class="nav">
+<div>
+    <header>
+        <span><img src="xlimg/555.jpg" alt="" class="ss1" @click="fh"></span>
+        课程详情
+        <span><img src="xlimg/999.jpg" alt="" class="ss"></span>
+    </header>
+    <div class="nav">
             <ul>
                 <li v-for="(item,key) in arr1" :key="key">
                     <p class="p1">{{item.title}}
-
                         <span class='el-icon-star-off' v-if="ss" @click="ss1"></span>
-                         <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span>
-                     </p>
-                      <p class="p2">{{item.price|number()}}</p>
+                        <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span>
+                    </p>
+                    <p class="p2">{{item.price|number()}}</p>
                     <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p>
-                 </li>
-
+                </li>
         </ul>
-      </div>
-       <div class="d1">
+    </div>
+    <div class="d1">
             <div class="nav">
                 <p>教学团队</p>
-
-                  <ul>
-            <li v-for="(v,i) in arr2" :key="i">
-               <img :src="v.avatar" alt="">
-                <span>{{v.teacher_name}}</span>
-            </li>
+         <ul>
+                <li v-for="(v,i) in arr2" :key="i">
+                <img :src="v.avatar" alt="">
+                    <span>{{v.teacher_name}}</span>
+                </li>
         </ul>
             </div>
 
         </div>
-           <div class="d2">
+        <div class="d2">
             <div class="nav">
-               <p>课程介绍</p>
+            <p>课程介绍</p>
                 <li v-for="(v,i) in arr1" :key="i">
 
                 <span v-html="v.course_details"></span>
@@ -43,9 +39,9 @@
             </div>
 
         </div>
-         <div class="d3">
+        <div class="d3">
             <div class="nav">
-               <p>课程大纲</p>
+            <p>课程大纲</p>
                 <li v-for="(v,i) in arr1" :key="i">
 
                 <span v-html="v.course_details"></span>
@@ -53,16 +49,16 @@
             </div>
             <i class="o"></i>
         </div>
-         <div class="d4">
+        <div class="d4">
             <div class="nav">
-               <p>课程评论</p>
-             <img src="xlimg/微信图片_20200707160813.png" alt="">
+            <p>课程评论</p>
+            <img src="xlimg/微信图片_20200707160813.png" alt="">
 
             </div>
 
         </div>
-          <el-footer class="f">立即报名</el-footer>
-  </div>
+        <el-footer class="f">立即报名</el-footer>
+</div>
 </template>
 
 <script>
@@ -72,9 +68,8 @@ export default {
         return{
             id:"" ,
             arr1:[],
-             arr2:[],
-        ss:true
-
+            arr2:[],
+            ss:true
         }
 
     },
@@ -85,11 +80,10 @@ export default {
         },
         ss1(){
             this.ss=!this.ss
-
         }
 },
-  filters:{
-       number(val){
+filters:{
+    nuSmber(val){
             if(val == 0){
                 return "免费";
             }else{
@@ -98,17 +92,17 @@ export default {
             return val;
         }
     },
- mounted(){
+mounted(){
         this.id=this.$route.query.id
         // console.log(this.id)
-          this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
+        this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
             console.log(res)
             this.arr1.push(res.data.data.info)
             console.log(this.arr1)
-  console.log(this.arr2)
+console.log(this.arr2)
         this.arr2.push(res.data.data.teachers[0])
 
-         })
+        })
     }
 }
 </script>
@@ -120,16 +114,16 @@ export default {
         height: 0.86rem;
         justify-content: space-between;
         font-size: 0.36rem;
-      margin-top: 0.28rem;
+        margin-top: 0.28rem;
 
         .ss1{
-          width: 0.22rem;
-          height: 0.35rem;
-          margin-left: 0.36rem;
+        width: 0.22rem;
+        height: 0.35rem;
+        margin-left: 0.36rem;
         }
-         .ss{
-          width: 0.33rem;
-          height: 0.39rem;
+        .ss{
+        width: 0.33rem;
+        height: 0.39rem;
 margin-right: 0.23rem;
 
         }
