@@ -101,6 +101,7 @@
             },
             //收藏
 			ab(){
+				this.$toast.success('已关注');
 				this.teacher2 = 3;
 				let id = this.$route.query.id;
 				console.log(id);
@@ -113,6 +114,7 @@
 			},
 			//取消收藏
 			ba(){
+				this.$toast.fail('已取消');
 				this.teacher2 = 2;
 				let id = this.$route.query.id;
 				console.log(id);
