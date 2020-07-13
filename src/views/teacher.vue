@@ -3,33 +3,35 @@
         <header>
             <van-nav-bar title="讲师详情" left-arrow :border="false"  @click-left="onClickLeft"  />
         </header>
-        <div class="nav"  v-for="(item,key) in nav1" :key="key">
-            <div class="top">
-                <div class="nav_left" >
-                    <img :src="item.avatar" alt="" />
-                    <label for="">
-                        <span>{{item.teacher_name}}</span>
-                        <a>{{item.level_name}}</a>
-                        <label for="">
-                            <i v-if="item.sex == 0">男</i>
-                            <i v-if="item.sex != 0">女</i>
-                        </label>
-                        <strong>{{item.teach_age}}年教龄</strong>
-                    </label>
-                </div>
-                <div class="nav_right">
-                    <button v-show="!flag" @click="aabb()">关注</button>
-                    <button v-show="flag" @click="aabb()">已关注</button>
-                </div>
-            </div>
-            <div class="bot" v-for="(ite,ind) in nav11" :key="ind" >
-                <span v-html="ite.tag_content"></span>
-            </div>
-        </div>
+        <div class="nav" v-for="(item,key) in teacher1" :key='key'>
+			<div class="shang">
+				<img :src="item.avatar" alt="">
+				<label for="">
+					<span>{{item.teacher_name}}{{item.level_name}}</span>
+					<p>
+						<i v-if="item.sex ==0 ">男</i>
+						<i v-if="item.sex !=0 ">女</i>
+						{{item.teach_age}}年教龄
+					</p>
+				</label>
+				<div class="you">
+					<!-- {{teacher2}} -->
+					<button class="button1" v-show="teacher2 == 2" @click="ab()">关注</button>
+					<button class="button2" v-show="teacher2 != 2"   @click="ba()">已关注</button>
+				</div>
+			</div>
+			<div class="xia">
+				<ul>
+					<li v-for="(ite,ke) in item.tag_content" :key='ke'>
+						<span>{{ite}}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
         <div class="h"></div>
         <main>
             <div class="tabs">
-                <van-tabs v-model="active" title-active-color="#EB6100" title-inactive-color="#898C88">
+                <van-tabs :lazy-render='true' v-model="active" title-active-color="#EB6100" title-inactive-color="#898C88">
                     <van-tab title="讲师介绍" class="tabsss">
                         <ul>
                             <li v-for="(item,index) in tabs1" :key="index">
@@ -76,13 +78,11 @@
         data(){
             return{
                 active: 0,
-                nav1:[],
-                nav11:[],
-                nav2:[],
+                teacher1:[],
+				teacher2:'',
                 tabs1:[],
                 tabs2:[],
                 tabs3:[],
-                flag:false
             };
         },
         filters:{
@@ -99,24 +99,41 @@
             onClickLeft(){
                 this.$router.push('/Xl');
             },
-            aabb(){
-                this.flag = !this.flag;
-            }
+            //收藏
+			ab(){
+				this.teacher2 = 3;
+				let id = this.$route.query.id;
+				console.log(id);
+				this.$axios.get("https://www.365msmk.com/api/app/teacher/collect/"+id).then((res)=>{
+					console.log(res);
+				})
+				this.$axios.get("https://www.365msmk.com/api/app/teacher/"+id).then((res)=>{
+					console.log(res);
+				})
+			},
+			//取消收藏
+			ba(){
+				this.teacher2 = 2;
+				let id = this.$route.query.id;
+				console.log(id);
+				this.$axios.get("https://www.365msmk.com/api/app/teacher/collect/"+id).then((res)=>{
+					console.log(res);
+				})
+			}
         },
         mounted(){
             let id = this.$route.query.id;
             //导航
             this.$axios.get("https://www.365msmk.com/api/app/teacher/"+id).then((res)=>{
-                // console.log(res.data.data.teacher);
-                this.nav1.push(res.data.data.teacher);
-                this.nav11.push(res.data.data.teacher);
-                this.nav2 = res.data.data.teacher.tag_content;
+				this.teacher1.push(res.data.data.teacher);
+				// console.log(res.data.data);
+				this.teacher2 = res.data.data.flag;
             }).catch((error)=>{
                 console.log(error);
             })
             //介绍
             this.$axios.get("https://www.365msmk.com/api/app/teacher/info/"+id).then((res)=>{
-                console.log(res);
+                // console.log(res);
                 this.tabs1 = res.data.data.attr;
                 this.tabs2 = res.data.data.intro;
             }).catch((error)=>{
@@ -139,7 +156,7 @@
                 page:1,
                 teacher_id:id
             }).then((res)=>{
-                console.log(res);
+                // console.log(res);
             }).catch((error)=>{
                 console.log(error);
             })
@@ -168,61 +185,76 @@
         position: relative;
         bottom: 8%;
         left: 3%;
-        .bot{
-            width: 100%;
-            height: auto;
-            /*span{*/
-            /*    width: 1rem;*/
-            /*    background: red;*/
-            /*}*/
-        }
-
-        .top{
-            width: 100%;
-            height: 80%;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            .nav_left{
-                display: flex;
-                justify-content: space-around;
-                img{
-                    width: 0.85rem;
-                    height: 0.85rem;
-                    border-radius: 50%;
-                }
-                label{
-                    span{
-                        font-size: 0.14rem;
-                        color: #333333;
-                    }
-                    a{
-                        font-size: 0.11rem;
-                        color: orangered;
-                    }
-                    label{
-                        display: block;
-                    }
-                    strong{
-                        color: grey;
-                        font-size: .23rem;
-                        /*display: block;*/
-                    }
-                }
-            }
-            .nav_right{
-                button{
-                    border-radius: 0.35rem;
-                    border: none;
-                    outline: none;
-                    color: orangered;
-                    font-size: 0.12rem;
-                    display: inline-block;
-                    width: 1rem;
-                    height: 0.45rem;
-                }
-            }
-        }
+		.shang{
+			z-index: 999;
+			width: 100%;
+			height: 65%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			img{
+				width: 0.85rem;
+				height: 0.85rem;
+				border-radius: 50%;
+			}
+			label{
+				span{
+					font-size: 0.12rem;
+					color: dimgrey;
+				}
+			}
+			.you{
+				.button1{
+					width: 1.25rem;
+					height: 0.45rem;
+					background: #EBEEFE;
+					color: #ED7A2F;
+					border: none;
+					outline: none;
+					display: block;
+					border-radius: 0.35rem;
+					font-size: 0.12rem;
+				}
+				.button2{
+					width: 1.25rem;
+					height: 0.45rem;
+					background: white;
+					color: grey;
+					border: none;
+					outline: none;
+					display: block;
+					border-radius: 0.35rem;
+					font-size: 0.12rem;
+				}
+			}
+		}
+		.xia{
+			width: 100%;
+			height: 35%;
+			ul{
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+				li{
+					width: 1.2rem;
+					height: 0.35rem;
+					background: #FFE4D3;
+					color: #ED7A2F;
+					border-radius: 0.35rem;
+					display: block;
+					text-align: center;
+					line-height: 0.35rem;
+					span{
+						display: flex;
+						align-items: center;
+						justify-content: space-around;
+						font-size: 0.12rem;
+					}
+				}
+			}
+		}
     }
     .h{
         width: 100%;
@@ -326,11 +358,9 @@
             }
         }
     }
-.van-tab__pane{
-    margin-top: .3rem;
-}
-
-
+	.van-tab__pane{
+		margin-top: .3rem;
+	}
     footer{
         width: 100%;
         height: 100%;

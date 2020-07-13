@@ -9,14 +9,12 @@
 		</header>
 		<main>
 			<!-- //没有关注时显示 -->
-			<ul class="one" v-show="teacher.length < 0">
+			<ul class="one">
 				<img src="../../../public/暂无关注老师.jpg" alt="" />
 			</ul>
 			<!-- //当有数据的时显示的 -->
 			<ul class="two">
-				<li v-for="(item,key) in teacher" :key="key">
-					{{item.introduction}}
-				</li>
+				<!-- {{id}} -->
 			</ul>
 		</main>
 	</div>
@@ -24,23 +22,20 @@
 
 <script>
 	export default{
-		name:"Czp_E3",
+		name:"Focuson",
 		data(){
 			return{
-				teacher:[]
+				
 			}
 		},
 		mounted(){
-			this.$axios.get("https://www.365msmk.com/api/app/collect?page=1&limit=10&type=2&",).then((res)=>{
+			this.$axios.get("https://www.365msmk.com/api/app/collect?page=1&limit=10&type=1&").then((res)=>{
 				console.log(res);
-				this.teacher = res.data.data.list;
-			}).catch((error)=>{
-				console.log(error);
 			})
 		},
 		methods:{
 			 onClickLeft(){
-			    this.$router.push("/Czp");
+			    this.$router.push("/Xl");
 			},
 		}
 	}

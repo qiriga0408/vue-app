@@ -16,8 +16,14 @@ axios.defaults.baseURL="https://www.365msmk.com";
 
 axios.interceptors.request.use(function(config){
 config.headers={
-DeviceID:ID,
-DeviceType:"H5"
+	DeviceID:ID,
+	DeviceType:"H5"
+}
+let adminToken = localStorage.getItem("remember_token");
+// console.log(adminToken);
+
+if(adminToken){
+    config.headers.Authorization=`Bearer ${adminToken}`
 }
 return config;
 

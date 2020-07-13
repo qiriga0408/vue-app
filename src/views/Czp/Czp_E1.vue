@@ -46,8 +46,8 @@
                 <p>课程相关</p>
                 <label for="">
                     <li><img src="../../../public/czpimg/E1/E1_002.jpg" alt=""><a>我的作业</a></li>
-					<li><img src="../../../public/czpimg/E1/E1_003.jpg" alt=""><a>关注的老师</a></li>
-					<router-link to="/Czp/Czp_E3" tag="li"><img src="../../../public/czpimg/E1/E1_004.jpg" alt=""><a>我的收藏</a></router-link>
+					<li><img src="../../../public/czpimg/E1/E1_003.jpg" alt=""><a>我的收藏</a></li>
+					<router-link to="/Czp/Czp_E3" tag="li"><img src="../../../public/czpimg/E1/E1_004.jpg" alt=""><a>关注的老师</a></router-link>
 					<router-link to="/Czp/Czp_E4" tag="li"><img src="../../../public/czpimg/E1/E1_005.jpg" alt=""><a>我的下载</a></router-link>
                 </label>
             </ul>

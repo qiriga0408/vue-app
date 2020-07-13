@@ -50,6 +50,7 @@ import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
 import Xg from "@/views/Czp/xiugai";
 import teacher from "../views/teacher";
+import Focuson from '../views/Czp/Focuson.vue';
 
 import SxlYdy from "@/views/sxl/SxlYdy";
 
@@ -79,6 +80,11 @@ const routes = [
         name: 'teacher',
         component: teacher
     },
+	{
+	    path: '/focuson',
+	    name: 'Focuson',
+	    component: Focuson
+	},
     {
 
         path: '/Xlrl',
