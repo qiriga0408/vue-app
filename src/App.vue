@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <!-- <router-link tag="div" :to="{path:'/qrgMessage'}" class="liu">留言</router-link> -->
-   
-    <router-view></router-view>
+   <!-- <keep-alive include=""> -->
+     <router-view></router-view>
+  <!-- </keep-alive> -->
      <!-- <div id="webid">
         <div class="minbox" id="box"
                   @mousedown.prevent="down()" @touchstart="down()"
@@ -16,7 +17,7 @@
         </div>
         
     </div> -->
-    
+   
   </div>
 </template>
 <script>

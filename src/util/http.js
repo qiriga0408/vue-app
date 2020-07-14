@@ -25,6 +25,10 @@ let adminToken = localStorage.getItem("remember_token");
 if(adminToken){
     config.headers.Authorization=`Bearer ${adminToken}`
 }
+// let adminToken = localStorage.getItem("remember_token")
+// if(adminToken){
+//     config.headers.Authorization=`Bearer ${adminToken}`
+// }
 return config;
 
 },function(error){

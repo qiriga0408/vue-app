@@ -67,12 +67,13 @@
                               <ul>
                                   <li v-for="(item,key) in list" :key="key" @click="tz(item.id)">
                                           <div class="item-5">
-                                              <p class="p1">{{item.aa}}</p>
-                                              <img class="img1" :src="item.img1" alt="">
+                                              <p class="p1">{{item.title}}</p>
+                               
+                                              <span class="img1"><van-icon name="clock-o" /></span>
                                               <span>{{item.bb}}</span>
                                               <div class="div1">
-                                                <img class="img2" :src="item.img2" alt="">
-                                                <span>{{item.cc}}</span>
+                                                <img class="img2" :src="item.teachers_list[0].teacher_avatar" alt="">
+                                                <span>{{item.teachers_list[0].teacher_name}}</span>
                                               </div>
                                               <hr>
                                               <p class="p2">
@@ -82,7 +83,7 @@
                                           </div>
                                   </li>
                               </ul>
-                        </div>
+                        </div>0
 		                </van-list>
 
                     <!-- <div id="log" @click="xf()">
@@ -145,20 +146,25 @@ export default {
     },
     
     mounted(){
-       document.addEventListener("touchmove",function(ev){
-						ev.preventDefault()
-              },{passive:false}); 
-               // 实现上下拖动
-			        var mscroll=new Iscroll(".box",{
-			            protoType:2
-              })
+      //  document.addEventListener("touchmove",function(ev){
+			// 			ev.preventDefault()
+      //         },{passive:false}); 
+      //          // 实现上下拖动
+			//         var mscroll=new Iscroll(".box",{
+			//             protoType:2
+      //         })
               
-        this.$axios.get("zhdata.json").then((res)=>{
-          console.log(res)
-          // this.list=res.data.list
-          this.all=res.data.list.length
-			    this.list=res.data.list.slice(this.page,this.number);
-        })
+      //   this.$axios.get("zhdata.json").then((res)=>{
+      //     console.log(res)
+      //     // this.list=res.data.list
+      //     this.all=res.data.list.length
+			//     this.list=res.data.list.slice(this.page,this.number);
+      //   })
+         this.$axios.get("https://www.365msmk.com/api/app/courseBasis?page=1&limit=10&").then((res)=>{
+           console.log(res.data)
+           this.list=res.data.data.list
+           console.log(this.list)
+         })
     },
     methods:{
       // 弹出层
@@ -441,7 +447,9 @@ header{
   }
 }
 
-
+.img1{
+  color: grey;
+}
 
 
 </style>

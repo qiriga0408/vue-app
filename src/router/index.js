@@ -51,8 +51,13 @@ import Czp_E6 from "@/views/Czp/Czp_E6";
 import Czp_E7 from "@/views/Czp/Czp_E7";
 import Czp_E10 from "@/views/Czp/Czp_E10";
 import Xg from "@/views/Czp/xiugai";
+
 import teacher from "../views/teacher";
 import Focuson from '../views/Czp/Focuson.vue';
+
+import Xq from "@/views/Czp/xiangq.vue";
+
+
 
 import SxlYdy from "@/views/sxl/SxlYdy";
 
@@ -253,6 +258,11 @@ const routes = [
                 name: 'Czp_E10',
                 component: Czp_E10
             },
+            {
+                path: '/Czp/xingq',
+                name: 'Xq',
+                component: Xq
+            }
         ]
     },
     {

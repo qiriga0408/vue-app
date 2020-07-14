@@ -7,14 +7,29 @@
     </header>
     <div class="nav">
             <ul>
-                <li v-for="(item,key) in arr1" :key="key">
+                <!-- <li v-for="(item,key) in arr1" :key="key">
+
                     <p class="p1">{{item.title}}
                         <span class='el-icon-star-off' v-if="ss" @click="ss1"></span>
                         <span class='el-icon-star-on' v-if="!ss" @click="ss1"></span>
                     </p>
                     <p class="p2">{{item.price|number()}}</p>
                     <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p>
-                </li>
+                </li> -->
+                <li v-for="(item,key) in arr1" :key="key">
+                
+                    <p class="p1">{{item.title}}   
+                          <span class='el-icon-star-off' v-show="ss2==0"  @click="ss1(item)"></span>
+                        <span class='el-icon-star-on'    v-show="ss2==1" @click="sss(item)"></span>
+                    
+                    <!-- <span class="el-icon-star-on"></span> -->
+
+                     </p>
+                      <p class="p2">{{item.price|number()}}</p> 
+                    <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p> 
+                 </li> 
+           
+
         </ul>
     </div>
     <div class="d1">
@@ -68,8 +83,14 @@ export default {
         return{
             id:"" ,
             arr1:[],
-            arr2:[],
-            ss:true
+
+             arr2:[],
+              arr3:[],
+        ss:true,
+        ss2:0,
+        ms:"",
+        shoucang_id:''
+
         }
 
     },
@@ -78,9 +99,60 @@ export default {
         fh(){
             this.$router.go(-1)
         },
-        ss1(){
-            this.ss=!this.ss
+
+        // ss1(){
+        //     this.ss=!this.ss
+
+        async ss1(v){ 
+     
+          let { data:res } = await this.$axios.post(`https://www.365msmk.com/api/app/collect/`,{
+        course_basis_id:this.id,
+        type:1   
+})
+// this.ms=res.data
+          console.log(res)
+     this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+               this.ss2=data.data.data.info.is_collect
+                    console.log(this.ss2) 
+               
+     })   
+    
+       
+
+  
+        },
+       async sss(v) {
+
+                let {data:res}=  await this.$axios.put(`https://www.365msmk.com/api/app/collect/cancel/${this.shoucang_id}/1`)
+                               
+                   this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+       
+                    this.ss2=data.data.data.info.is_collect
+                     console.log(this.ss2) 
+
+
+     })   
+      
+       
+        },
+        jj(){
+              this.id=this.$route.query.id
+        // console.log(this.id)
+          this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
+            console.log(res) 
+         
+             this.shoucang_id=res.data.data.info.collect_id
+                     console.log(this.shoucang_id)
+
+           this.arr1.push(res.data.data.info) 
+    
+            console.log(this.arr1)
+           console.log(this.arr2)
+        this.arr2.push(res.data.data.teachers[0])
+          this.arr3=this.arr1
+
         }
+          )}
 },
 filters:{
     nuSmber(val){
@@ -92,17 +164,35 @@ filters:{
             return val;
         }
     },
-mounted(){
-        this.id=this.$route.query.id
-        // console.log(this.id)
-        this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
-            console.log(res)
-            this.arr1.push(res.data.data.info)
-            console.log(this.arr1)
-console.log(this.arr2)
-        this.arr2.push(res.data.data.teachers[0])
 
-        })
+// mounted(){
+//         this.id=this.$route.query.id
+//         // console.log(this.id)
+//         this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
+//             console.log(res)
+//             this.arr1.push(res.data.data.info)
+//             console.log(this.arr1)
+// console.log(this.arr2)
+//         this.arr2.push(res.data.data.teachers[0])
+
+//         })
+
+ mounted(){
+      
+         this.jj()
+                         
+    this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+       
+                    this.ss2=data.data.data.info.is_collect
+                     console.log(this.ss2) 
+  this.arr1.is_collect= this.ss2
+
+     }) 
+
+    },
+    updated(){
+    
+
     }
 }
 </script>
