@@ -2,33 +2,36 @@
     <div>
         <header>
             <button @click="fh()">＜</button>
-            <input type="text" class="txt1" v-model="name" @input="seach()" @keyup.enter="add()">
-            <span>搜索</span>
+            <input type="text" class="txt1" v-model="test"  />
+            <span @click="add()">搜索</span>
         </header>
-         <div class="item-1">
-            <ul>
-                <li v-for="(item,key) in lists" :key="key">
-                    <div class="item-2">
-                            <p class="p1">{{item.aa}}</p>
-                            <img class="img1" :src="item.img1" alt="">
-                            <span>{{item.bb}}</span>
-                            <div class="div1">
-                                <img class="img2" :src="item.img2" alt="">
-                                <span>{{item.cc}}</span>
-                           </div>
-                          <hr>
-                            <p class="p2">
-                            <a href="#">{{item.dd}}</a>
-                            <b>{{item.ee}}</b>
-                           </p>
-                           </div>
-                </li>
-            </ul>
-        </div>
+        <main>
+            <van-pull-refresh v-model="refreshing">
+                <van-list v-model="loading" :finished="finished" finished-text="没有更多了" >
+                    <ul class="index-item-page">
+                        <li class="ii-item" v-for="(v,i) of list2" :key="i" >
+                            <p class="ii-title">{{ v.title }}</p>
+                            <p class="ii-time"
+                            >{{ v.start_play_date }} | 共{{ v.total_periods }}课时</p>
+                            <div class="ii-teacher" v-for="(item,index) in v.teachers_list" :key="index">
+                                <img :src="item.teacher_avatar" alt />
+                                <font>{{ item.teacher_name }}</font>
+                                <i class="has-buy" v-show="v.has_buy==1"></i>
+                            </div>
+                            <p class="ii-info">
+                                <span class="person">{{ v.sales_num }}人已报名</span>
+                                <span class="free" v-if="v.price ==0">免费</span>
+                                <span class="price" v-else>{{ v.price | much }}</span>
+                            </p>
+                        </li>
+                    </ul>
+                </van-list>
+            </van-pull-refresh>
+        </main>
          <h2>历史搜索</h2>
         <div class="item-3">
             <ul>
-                <li v-for="(item,key) in lishi" :key="key">
+                <li v-for="(item,key) in lishi" :key="key" @click="ls(item)">
                     {{item.name}}
                 </li>
             </ul>
@@ -40,47 +43,40 @@ export default {
     name:"Zhseach",
     data(){
         return{
-            name:"",
+            test:'',
             list:[],
-            lists:[],
-            lishi:JSON.parse(localStorage.getItem("list"))||[]
+            list2:[],
+            loading: false,
+            CourseList: [],
+            attrclassify: [],
+            finished: false,
+            refreshing: false,
+            nowpage: 1,
+            nownum: 5,
+            classindex_grade:'',
+            classindex_subject:'',
+            lishi:[]
         }
-    },
-    mounted(){
-        this.$axios.get("zhdata.json").then((res)=>{
-            console.log(res)
-            this.list=res.data.list
-        })
     },
     methods:{
         fh(){
             this.$router.go(-1)
         },
-        // 搜索
-        seach(){
-             this.lists=[]
-            if(this.name==""){
-                return false
-            }else{   
-                this.list.forEach((item,key)=>{
-                    if(item.aa.indexOf(this.name)!=-1){
-                        this.lists.push(item)
-                    }
-                    localStorage.setItem("list",JSON.stringify(this.lists))
-                })
-            }
-        },
          add(){
-            var obj={
-                name:this.name
-            }
-            this.lishi.push(obj)
-            localStorage.setItem("list",JSON.stringify(this.lishi))
-            if(this.lishi.length==3){
-                this.lishi.splice(0,1)
-            }
-            
+             this.$axios.get("/api/app/courseBasis?limit=10&page=1&course_type=0&keywords="+this.test).then((res)=>{
+                 console.log(res);
+                 this.list2 = res.data.data.list;
+             })
+             let obj = {name:this.test,flag:false};
+             this.lishi.push(obj);
+             console.log(this.lishi);
+             localStorage.setItem("0716",JSON.stringify(this.lishi));
         },
+        //历l史记录
+        ls(item){
+            console.log('111');
+            this.test = item.name;
+        }
     }
 }
 </script>
@@ -108,74 +104,73 @@ header{
         border:1px solid;
     }
 }  
-.item-1{
-  width: 7.5rem;
-  ul{
+main{
     width: 100%;
     height: 100%;
-    li{
-      height: 3.5rem;
-      background: #F0F2F5;
-      .item-2{
-        width: 6.5rem;
-        height: 3rem;
-        background: #FFFFFF;
-        margin-left: 0.44rem;
-        border-radius: 10px;    
-        .p1{
-          font-size: 0.36rem;
-          margin-left: 0.3rem;
-          padding-top: 0.3rem;
-        }
-        .img1{
-          width: 0.34rem;
-          height: 0.34rem;
-          padding-top: 0.11rem;
-          padding-left: 0.3rem;
-        }
-        span{
-          padding-top: -0.1rem;
-          font-size: 0.28rem;
-        }
-        .div1{
-          width: 3rem;
-          height: 0.6rem;
-          display: flex;
-          align-items: center;
-          margin-left: 0.3rem;
-          margin-top: 0.3rem;
-          .img2{
-            display: block;
-            width: 0.4rem;
-            height: 0.4rem;
-
-          }
-          span{
-            display: block;
-            font-size: 0.3rem;
-          }
-        }
-       .p2{
-         width: 6.5rem;
-         height: 0.4rem;
-         display: flex;
-         align-items: center;
-        
-         a{
-           display: block;
-           font-size: 0.3rem;
-           margin-left: 0.3rem;
-         }
-         b{
-          display: block;
-          font-size: 0.3rem;
-          margin-left: 3.7rem;
-          color: #3EB21F;
-         }
-       }
-      }
+    .ii-title {
+        padding-top: 0.4rem;
+        text-align: left;
+        font-size: 0.3rem;
+        color: #333;
+        font-weight: 400;
     }
-  }
+    .ii-time {
+        margin: 0;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        font-size: 0.28rem;
+        color: #666;
+        font-weight: 400;
+        text-align: left;
+    }
+    .ii-teacher {
+        height: 1.2rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        > img {
+            width: 0.72rem;
+            height: 0.72rem;
+            border-radius: 50%;
+        }
+        > font {
+            font-size: 0.28rem;
+            color: rgba(0, 0, 0, 0.45);
+            margin-left: 0.2rem;
+            font-weight: 400;
+        }
+        .has-buy {
+            position: absolute;
+            right: 0rem;
+            top: 0rem;
+            /*background: url(../assets/pic/yes.png) no-repeat;*/
+            background-size: 100% 100%;
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+    .ii-info {
+        margin: 0;
+        border-top: 0.01rem solid #f5f5f5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 1rem;
+        .person {
+            font-size: 0.28rem;
+            color: rgba(0, 0, 0, 0.45);
+        }
+        .free {
+            color: #44a426;
+            font-size: 0.3rem;
+        }
+        .price {
+            color: #ee1f1f;
+            font-size: 0.3rem;
+            > img {
+                width: 0.32rem;
+            }
+        }
+    }
 }
-
 </style>

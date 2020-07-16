@@ -5,11 +5,11 @@
         </div>    
         <div class="loding_loding">
             <div>
-                <div ref="div1" class="inp">
-                    <input placeholder="请输入手机号"  v-model="ss"/>
+                <div ref="div1" class="inp" :style="{borderBottom:active==1?'1px solid orange':''}"  @click="active=1" >
+                    <input placeholder="请输入手机号"  v-model="ss" @blur="blurFn"/>
                 </div>
-                <div ref="div2" class="inp">
-                    <input   placeholder="请输入密码" v-model="ss1" />
+                <div ref="div2" class="inp" :style="{borderBottom:active==2?'1px solid orange':''}"  @click="active=2" > 
+                    <input   placeholder="请输入密码" v-model="ss1"  @blur="blurFn" />
                 </div>
                 <div class="loding_loding_Registration">
                     <div v-on:click="password">找回密码</div>
@@ -26,11 +26,14 @@ export default {
     data(){
         return{
             ss:"",
-            ss1:""
+            ss1:"",
+            active:''
         }
     },
     methods:{
-
+       blurFn(){
+            this.active=-1
+          },
         password(){
             this.$router.push('/qrgPassword')
         },
@@ -79,7 +82,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: red; */
+    /* background:orange; */
 }
 .loding_img img{
     width: 60%;

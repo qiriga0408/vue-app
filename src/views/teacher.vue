@@ -105,10 +105,10 @@
 				this.teacher2 = 3;
 				let id = this.$route.query.id;
 				console.log(id);
-				this.$axios.get("https://www.365msmk.com/api/app/teacher/collect/"+id).then((res)=>{
+				this.$axios.get("http://120.53.31.103:84/api/app/teacher/collect/"+id).then((res)=>{
 					console.log(res);
 				})
-				this.$axios.get("https://www.365msmk.com/api/app/teacher/"+id).then((res)=>{
+				this.$axios.get("http://120.53.31.103:84/api/app/teacher/"+id).then((res)=>{
 					console.log(res);
 				})
 			},
@@ -118,7 +118,7 @@
 				this.teacher2 = 2;
 				let id = this.$route.query.id;
 				console.log(id);
-				this.$axios.get("https://www.365msmk.com/api/app/teacher/collect/"+id).then((res)=>{
+				this.$axios.get("http://120.53.31.103:84/api/app/teacher/collect/"+id).then((res)=>{
 					console.log(res);
 				})
 			}
@@ -126,7 +126,7 @@
         mounted(){
             let id = this.$route.query.id;
             //导航
-            this.$axios.get("https://www.365msmk.com/api/app/teacher/"+id).then((res)=>{
+            this.$http.get("/api/app/teacher/"+id).then((res)=>{
 				this.teacher1.push(res.data.data.teacher);
 				// console.log(res.data.data);
 				this.teacher2 = res.data.data.flag;
@@ -134,7 +134,7 @@
                 console.log(error);
             })
             //介绍
-            this.$axios.get("https://www.365msmk.com/api/app/teacher/info/"+id).then((res)=>{
+            this.$http.get("/api/app/teacher/info/"+id).then((res)=>{
                 // console.log(res);
                 this.tabs1 = res.data.data.attr;
                 this.tabs2 = res.data.data.intro;
@@ -142,7 +142,7 @@
                 console.log(error);
             })
             //主要课程
-            this.$axios.post("https://www.365msmk.com/api/app/teacher/mainCourse",{
+            this.$http.post("/api/app/teacher/mainCourse",{
                 limit:10,
                 page:1,
                 teacher_id:id
@@ -153,7 +153,7 @@
                 console.log(error);
             })
             //学院评价
-            this.$axios.post("https://www.365msmk.com/api/app/teacher/comment",{
+            this.$http.post("/api/app/teacher/comment",{
                 limit:2,
                 page:1,
                 teacher_id:id

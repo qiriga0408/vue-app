@@ -1,9 +1,14 @@
 <template>
 <div>
-    <header>
+    <header :class="config?'he':''">
         <span><img src="xlimg/555.jpg" alt="" class="ss1" @click="fh"></span>
-        课程详情
-        <span><img src="xlimg/999.jpg" alt="" class="ss"></span>
+        <span v-show="!config">课程详情</span>
+        <div v-show="config">
+            <span>课程介绍</span>
+             <span>课程大纲</span>
+              <span @click="com">课程评论</span>
+        </div>
+        <span><img src="xlimg/999.jpg" alt="" class="ss"></span> 
     </header>
     <div class="nav">
             <ul>
@@ -21,10 +26,11 @@
                     <p class="p1">{{item.title}}   
                           <span class='el-icon-star-off' v-show="ss2==0"  @click="ss1(item)"></span>
                         <span class='el-icon-star-on'    v-show="ss2==1" @click="sss(item)"></span>
-                    
+
                     <!-- <span class="el-icon-star-on"></span> -->
 
                      </p>
+
                       <p class="p2">{{item.price|number()}}</p> 
                     <p class="p3">共{{item.total_periods}}课时|{{item.sales_num}}已报名</p> 
                  </li> 
@@ -66,13 +72,14 @@
         </div>
         <div class="d4">
             <div class="nav">
-            <p>课程评论</p>
+            <p ref="comment">课程评论</p>
             <img src="xlimg/微信图片_20200707160813.png" alt="">
 
             </div>
 
         </div>
-        <el-footer class="f">立即报名</el-footer>
+        <footer  @click="hh()"  v-show=" this.$store.lj" class="f" >立即报名</footer>
+         <footer  @click="hh()"  v-show=" this.$store.lj" class="f" >立即学习</footer>
 </div>
 </template>
 
@@ -89,13 +96,59 @@ export default {
         ss:true,
         ss2:0,
         ms:"",
-        shoucang_id:''
+        shoucang_id:'',
+        sw:true,
+        config:false,
+        lj:'',
+        isbuy:""
 
         }
 
     },
+    created(){
+        document.body.scrollTop=document.documentElement.scrollTop=0;
+                 this.$axios.get(`http://120.53.31.103:84/api/app/courseInfo/basis_id=${this.id}`).then((res)=>{
+            console.log(res.data.data.info.is_buy)
+    this.isbuy=res.data.data.info.is_buy
+    console.log(this.isbuy)
+            // if(){
+         
+            // }
+        })
+                 if(this.isbuy==0){
+            this.$store.lj=true
 
+        }else{
+            // this.lj=false
+            this.$store.lj=false
+        }
+    },
     methods:{
+    hh(){
+  
+        // alert("222")
+        this.$http
+        .post("api/app/order/downOrder", {
+          shop_id: this.id,
+          type: 5
+        }).then((res)=>{
+    console.log(res)
+
+                    this.$axios.get(`http://120.53.31.103:84/api/app/courseInfo/basis_id=${this.id}`).then((res)=>{
+            console.log(res.data.data.info.is_buy)
+
+            // if(){
+         
+            // }
+        })
+      
+})
+
+
+
+       
+
+    },
         fh(){
             this.$router.go(-1)
         },
@@ -105,13 +158,13 @@ export default {
 
         async ss1(v){ 
      
-          let { data:res } = await this.$axios.post(`https://www.365msmk.com/api/app/collect/`,{
+          let { data:res } = await this.$axios.post(`http://120.53.31.103:84/api/app/collect/`,{
         course_basis_id:this.id,
         type:1   
 })
 // this.ms=res.data
           console.log(res)
-     this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+     this.$axios.get("http://120.53.31.103:84//api/app/courseInfo/basis_id="+this.id).then((data)=>{
                this.ss2=data.data.data.info.is_collect
                     console.log(this.ss2) 
                
@@ -121,11 +174,19 @@ export default {
 
   
         },
+                handleScrollx() {
+          console.log('滚动高度', window.pageYOffset)
+          this.config=window.pageYOffset>30
+        //   console.log('距离顶部高度', this.$refs.obtain.getBoundingClientRect().top)
+        },
+        com(){
+            this.$refs.comment.scrollIntoView()
+        },
        async sss(v) {
 
-                let {data:res}=  await this.$axios.put(`https://www.365msmk.com/api/app/collect/cancel/${this.shoucang_id}/1`)
+                let {data:res}=  await this.$axios.put(`http://120.53.31.103:84/api/app/collect/cancel/${this.shoucang_id}/1`)
                                
-                   this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+                   this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((data)=>{
        
                     this.ss2=data.data.data.info.is_collect
                      console.log(this.ss2) 
@@ -138,7 +199,7 @@ export default {
         jj(){
               this.id=this.$route.query.id
         // console.log(this.id)
-          this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((res)=>{
+          this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((res)=>{
             console.log(res) 
          
              this.shoucang_id=res.data.data.info.collect_id
@@ -178,10 +239,10 @@ filters:{
 //         })
 
  mounted(){
-      
+      window.addEventListener('scroll',this.handleScrollx,true)
          this.jj()
                          
-    this.$axios.get("https://www.365msmk.com/api/app/courseInfo/basis_id="+this.id).then((data)=>{
+    this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((data)=>{
        
                     this.ss2=data.data.data.info.is_collect
                      console.log(this.ss2) 
@@ -193,7 +254,8 @@ filters:{
     updated(){
     
 
-    }
+    },
+   
 }
 </script>
 
@@ -373,5 +435,12 @@ margin-right: 0.23rem;
     height: 0.84rem !important;
 
     font-size: 0.32rem;
+    }
+    .he{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
     }
 </style>

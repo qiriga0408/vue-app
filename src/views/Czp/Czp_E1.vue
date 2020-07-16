@@ -11,11 +11,11 @@
             </div>
             <div class="login_bottom">
                 <ul>
-                    <li>
-                        <strong>0</strong>
+                    <router-link to="/MyClass" tag="li">
+                        <strong>{{this.ss1}}</strong>
                         <span>我的课程</span>
                         <a>-已购买课程学习-</a>
-                    </li>
+                    </router-link>
                     <li>
                         <strong>0</strong>
                         <span>我的预约</span>
@@ -91,11 +91,17 @@
         name:"Czp_E1",
         data(){
             return{
-                ss:window.localStorage.getItem('mobile')
+                ss:window.localStorage.getItem('mobile'),
+                ss1:""
             }
+        },
+        mounted(){
+            this.$axios.get("http://120.53.31.103:84/api/app/getUCenterInfo?").then((res)=>{
+                this.ss1=res.data.data.courses
+            })
         }
     }
-</script>
+</script>   
 <style lang="scss" scoped>
     #my{
         width: 100%;

@@ -36,15 +36,20 @@
                 </p>
                 <ul v-if="item.channel_info.type==3">
                     <router-link :to="{path:'/teacher',query:{id:v.teacher_id}}" tag="li" v-for="(v,i) in item.list" :key="i"  @click="open">
-                        <img :src="v.teacher_avatar" alt="">
+                      
+                        <img :src="v.teacher_avatar" alt=""> 
+                     
                         <p>
                            <span>
                             {{v.teacher_name}}
+                            
                         </span>
                         <span>
                             {{v.introduction}}
+                            
                         </span>
                         </p>
+                         
                     </router-link>
                 </ul>
             </div>
@@ -87,6 +92,7 @@
     </p>
         <ul v-if="item.channel_info.type==1">
             <li v-for="(v,i) in item.list" :key="i" @click="cc(v.id)">
+                <span class="ll" v-show="v.has_buy==1"><img src="xlimg/bc838f51e8bacfd6512e419233a3dd99.png" alt=""></span>
                <p class="p1">{{v.title}}</p>
                <span class="s1">共{{v.total_periods}}课时</span>
                <p class="p2"><img :src="v.teachers_list[0].teacher_avatar" alt=""> {{v.teachers_list[0].teacher_name}}</p>
@@ -163,7 +169,9 @@ export default {
 
             arr3:[],
             arr4:[],
-          ss:true
+          ss:true,
+          lj:this.$store.state.lj,
+          vj:""
         }
     },
     filters:{
@@ -175,6 +183,8 @@ export default {
             }
             return val;
         }
+
+
     },
 
     
@@ -186,10 +196,13 @@ export default {
         }else{
               this.ss=true 
         }
+console.log(this.lj)
+console.log(this.arr3) 
     },
      methods: {
            cc(v){
             // this.$router.push({path:`/Xlrl/${v}`})
+            this.vj=v
             this.$router.push({
                 path:'/Xlrl',
                 query:{
@@ -224,11 +237,11 @@ showConfirmButton:false
     mounted(){
         // this.$axios.get("data.json").then((res)=>{
         // })
-         this.$axios.get("https://www.365msmk.com/api/app/banner").then((res)=>{
+         this.$axios.get("http://120.53.31.103:84/api/app/banner").then((res)=>{
             //  console.log(res.data)
             this.add=res.data.data
         })
-           this.$axios.get("https://www.365msmk.com/api/app/recommend/appIndex").then((res)=>{
+           this.$axios.get("http://120.53.31.103:84/api/app/recommend/appIndex").then((res)=>{
             console.log(res.data.data)
             // console.log(res.data.data[1].list)
             this.arr=res.data.data
@@ -267,6 +280,7 @@ showConfirmButton:false
         display: block;
     }
 }
+
     .nav{
         width: 100%;
          position: relative;
@@ -494,5 +508,7 @@ showConfirmButton:false
         }
     }
 }
-
+.ll{
+float:right;
+}
 </style>

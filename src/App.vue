@@ -3,6 +3,8 @@
     <!-- <router-link tag="div" :to="{path:'/qrgMessage'}" class="liu">留言</router-link> -->
    <!-- <keep-alive include=""> -->
      <router-view></router-view>
+     <!-- 自己封装的loading 组件 -->
+      <!-- <Loading v-if='LOADING'/>  -->
   <!-- </keep-alive> -->
      <!-- <div id="webid">
         <div class="minbox" id="box"
@@ -21,9 +23,15 @@
   </div>
 </template>
 <script>
+ import {mapState} from 'vuex'
 import './util/meiqia'
 export default {
   name:"App",
+    computed:{
+            ...mapState([
+                'LOADING'
+            ])
+        },
   data(){
     return{
     //     flags: false,
@@ -119,6 +127,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
+    z-index: 9999;
     // font-size: 20px;
     ul{
         width: 100%;
@@ -126,6 +135,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        z-index: 9999;
         li{
             width: 20%;
             display: flex;
@@ -133,6 +143,8 @@ export default {
             justify-content: space-around;
             align-items: center;
             font-size: .45rem;
+        z-index: 9999;
+
             a{
                 display: block;
                 font-size: 0.3rem;

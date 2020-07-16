@@ -50,7 +50,7 @@
 		},
 		methods:{
 			aa(){
-					this.$axios.get("https://www.365msmk.com/api/app/collect?page=1&limit=10&type=2&",).then((res)=>{
+					this.$http.get("/api/app/collect?page=1&limit=10&type=2&",).then((res)=>{
 						console.log(res);
 						this.teacher = res.data.data.list;
 					}).catch((error)=>{
@@ -64,7 +64,7 @@
 			ab(item){
 				this.$toast('取消关注成功');
 				console.log(item);
-				this.$axios.put("https://www.365msmk.com/api/app/collect/cancel/"+item.collect_id+'/2').then((res)=>{
+				this.$http.put("/api/app/collect/cancel/"+item.collect_id+'/2').then((res)=>{
 					console.log(res);
 					this.aa()
 				})

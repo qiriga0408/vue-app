@@ -43,7 +43,7 @@ data(){
 			   this.$router.push('/Czp');
 			},
 			aa(){
-   						this.$axios.get('https://www.365msmk.com/api/app/collect?page=1&limit=10&type=1&').then((res)=>{
+   						this.$http.get('/api/app/collect?page=1&limit=10&type=1&').then((res)=>{
        
                      console.log(res.data.data.list) 
 			this.arr=res.data.data.list
@@ -54,7 +54,7 @@ data(){
 
 		async sss(i,id) {
 				
-                let {data:res}=  await this.$axios.put(`https://www.365msmk.com/api/app/collect/cancel/${id}/1`)
+                let {data:res}=  await this.$http.put(`/api/app/collect/cancel/${id}/1`)
 		
 	
 						console.log(res)
