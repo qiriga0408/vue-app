@@ -11,6 +11,7 @@ import './css/reset.css'
 // 引入轮播
 import 'swiper/css/swiper.min.css'
 
+Vue.prototype.bus = new Vue;
 // 引入公共http
 import http from './util/http'
 

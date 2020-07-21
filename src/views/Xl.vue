@@ -91,7 +91,7 @@
         <!-- 精品课程 -->
     </p>
         <ul v-if="item.channel_info.type==1">
-            <li v-for="(v,i) in item.list" :key="i" @click="cc(v.id)">
+            <li v-for="(v,i) in item.list" :key="i" @click="cc(v.id,v.courseType)">
                 <span class="ll" v-show="v.has_buy==1"><img src="xlimg/bc838f51e8bacfd6512e419233a3dd99.png" alt=""></span>
                <p class="p1">{{v.title}}</p>
                <span class="s1">共{{v.total_periods}}课时</span>
@@ -200,13 +200,14 @@ console.log(this.lj)
 console.log(this.arr3) 
     },
      methods: {
-           cc(v){
+           cc(id,courseType){
             // this.$router.push({path:`/Xlrl/${v}`})
-            this.vj=v
+            // this.vj=v
             this.$router.push({
                 path:'/Xlrl',
                 query:{
-                    id:v
+                    id:id,
+                    type:courseType
                 }
             })
            },
@@ -237,11 +238,19 @@ showConfirmButton:false
     mounted(){
         // this.$axios.get("data.json").then((res)=>{
         // })
+          // 显示loading
+                this.bus.$emit('loading', true);
          this.$axios.get("http://120.53.31.103:84/api/app/banner").then((res)=>{
+           this.bus.$emit('loading', false);
             //  console.log(res.data)
             this.add=res.data.data
         })
+        
+             // 显示loading
+                this.bus.$emit('loading', true);
            this.$axios.get("http://120.53.31.103:84/api/app/recommend/appIndex").then((res)=>{
+                 // 关闭loading
+            this.bus.$emit('loading', false);
             console.log(res.data.data)
             // console.log(res.data.data[1].list)
             this.arr=res.data.data
@@ -254,6 +263,7 @@ showConfirmButton:false
             // console.log(this.arr3)
             // this.arr1=res.data.data[1].list 
         })
+    
         //   this.$axios.get("./xlimg/xl2.json").then((res)=>{
         //     console.log(res)
         //     this.arr1=res.data.name

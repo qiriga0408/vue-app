@@ -4,6 +4,7 @@
    <!-- <keep-alive include=""> -->
      <router-view></router-view>
      <!-- 自己封装的loading 组件 -->
+     <loading></loading>
       <!-- <Loading v-if='LOADING'/>  -->
   <!-- </keep-alive> -->
      <!-- <div id="webid">
@@ -23,15 +24,19 @@
   </div>
 </template>
 <script>
- import {mapState} from 'vuex'
+import loading from '@/components/loading'
+//  import {mapState} from 'vuex'
 import './util/meiqia'
 export default {
   name:"App",
-    computed:{
-            ...mapState([
-                'LOADING'
-            ])
-        },
+  components:{
+    loading
+  },
+    // computed:{
+    //         ...mapState([
+    //             'LOADING'
+    //         ])
+    //     },
   data(){
     return{
     //     flags: false,

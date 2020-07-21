@@ -8,8 +8,15 @@
              <span>课程大纲</span>
               <span @click="com">课程评论</span>
         </div>
-        <span><img src="xlimg/999.jpg" alt="" class="ss"></span> 
+        <span><img src="xlimg/999.jpg" alt="" @click="showPopup" class="ss"></span> 
     </header>
+     <van-popup v-model="show">
+            <p>分享</p>
+            <div>
+                <qriously :value="initQCode" :size="155" style="text-align:center;margin-top:10px;"></qriously>
+                 <!-- <canvas id="canvas" ref="canva" class="qc"></canvas> -->
+            </div>
+        </van-popup>
     <div class="nav">
             <ul>
                 <!-- <li v-for="(item,key) in arr1" :key="key">
@@ -100,8 +107,9 @@ export default {
         sw:true,
         config:false,
         lj:'',
-        isbuy:""
-
+        isbuy:"",
+         // 分享弹出框
+             show: false,
         }
 
     },
@@ -124,6 +132,15 @@ export default {
         }
     },
     methods:{
+         showPopup() {
+                      this.show = true;
+                         let id=this.$route.query.id;
+                      let type=this.$route.query.type;
+                    console.log(this.$route.query.id)
+                    console.log(this.$route.query.type)
+                        this.initQCode = `https://wap.365msmk.com/course-detail?id=${id}&courseType=${type}`;
+                    // })
+                    },
     hh(){
   
         // alert("222")
@@ -132,7 +149,7 @@ export default {
           shop_id: this.id,
           type: 5
         }).then((res)=>{
-    console.log(res)
+    // console.log(res)
 
                     this.$axios.get(`http://120.53.31.103:84/api/app/courseInfo/basis_id=${this.id}`).then((res)=>{
             console.log(res.data.data.info.is_buy)
@@ -143,11 +160,6 @@ export default {
         })
       
 })
-
-
-
-       
-
     },
         fh(){
             this.$router.go(-1)
@@ -166,7 +178,7 @@ export default {
           console.log(res)
      this.$axios.get("http://120.53.31.103:84//api/app/courseInfo/basis_id="+this.id).then((data)=>{
                this.ss2=data.data.data.info.is_collect
-                    console.log(this.ss2) 
+                    // console.log(this.ss2) 
                
      })   
     
@@ -189,7 +201,7 @@ export default {
                    this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((data)=>{
        
                     this.ss2=data.data.data.info.is_collect
-                     console.log(this.ss2) 
+                    //  console.log(this.ss2) 
 
 
      })   
@@ -200,15 +212,15 @@ export default {
               this.id=this.$route.query.id
         // console.log(this.id)
           this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((res)=>{
-            console.log(res) 
+            // console.log(res) 
          
              this.shoucang_id=res.data.data.info.collect_id
-                     console.log(this.shoucang_id)
+                    //  console.log(this.shoucang_id)
 
            this.arr1.push(res.data.data.info) 
     
-            console.log(this.arr1)
-           console.log(this.arr2)
+            // console.log(this.arr1)
+        //    console.log(this.arr2)
         this.arr2.push(res.data.data.teachers[0])
           this.arr3=this.arr1
 
@@ -245,7 +257,7 @@ filters:{
     this.$axios.get("http://120.53.31.103:84/api/app/courseInfo/basis_id="+this.id).then((data)=>{
        
                     this.ss2=data.data.data.info.is_collect
-                     console.log(this.ss2) 
+                    //  console.log(this.ss2) 
   this.arr1.is_collect= this.ss2
 
      }) 
@@ -280,6 +292,18 @@ margin-right: 0.23rem;
 
         }
     }
+    .van-popup--center{
+    width: 70%;
+    height: 3.3rem;
+    border-radius: 10px;
+    // background: forestgreen;
+    p{
+        font-size: .4rem;
+        color: gray;
+        text-align: center;
+        margin-top: .2rem;
+    }
+}
     .nav{
         width: 6.90rem;
         margin: 0 auto;

@@ -4,7 +4,8 @@
         <div class="login">
             <div class="login_top">
                 <label for="">
-                    <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" />
+                    <img data-v-52ea0f24="" src="https://msmk2019.oss-cn-shanghai.aliyuncs.com/uploads/avatar.jpg">
+                    <!-- <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" /> -->
               
                     <router-link to="/Czp/Czp_E2" tag="span">{{ss}}</router-link>
                 </label>
@@ -107,6 +108,7 @@
         width: 100%;
         height: 100%;
         background: white;
+        font-size: .3rem;
         .top{
             width: 100%;
             height: 2.25rem;
@@ -133,13 +135,18 @@
                     display: flex;
                     align-items: center;
                     justify-content: start;
+                    
+                    span{
+                        font-size: .3rem;
+                    }
+                    img{
+                        width: 15%;
+                        height: 60%;
+                    }
                     .van-icon{
                         margin: 0.3rem;
                     }
-                    span{
-                        color: #333333;
-                        font-size: 0.14rem;
-                    }
+                   
                 }
             }
             .login_bottom{

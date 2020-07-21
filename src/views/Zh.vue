@@ -52,10 +52,15 @@
         </van-dropdown-menu>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
-                <ul class="index-item-page">
+                <!-- <courseList :courseList="item.courseList"></courseList> -->
+                 <ul class="index-item-page">
+                     
                     <li class="ii-item" v-for="(v,i) of CourseList" :key="i" @click="toCourseD(v)">
+                        <span class="ll" v-show="v.has_buy==1">
+                            <img src="xlimg/bc838f51e8bacfd6512e419233a3dd99.png" alt="">
+                        </span>
                         <p class="ii-title">{{ v.title }}</p>
-                        <p     class="ii-time"
+                        <p class="ii-time"
                         >{{ v.start_play_date}} | 共{{ v.total_periods }}课时</p>
                         <div class="ii-teacher" v-for="(item,index) in v.teachers_list" :key="index">
                             <img :src="item.teacher_avatar" alt />
@@ -105,10 +110,11 @@
 </template>
 
 <script>
-    import Footer from '../components/footer.vue';
+    import Footer from '@/components/footer.vue';
+    import courseList from '@/components/courseList' 
     export default {
         name: "Zh",
-        component:{
+        components:{
           Footer
         },
         data() {
@@ -153,7 +159,7 @@
                 flag:true,
             };
         },
-        created() {
+        created(){
             this.ajaxCourseClassify();
             // this.ajaxCourseBasis();
         },
@@ -193,15 +199,22 @@
                 })
                 this.$refs.item.toggle();
             },
-            back() {
+            back(){
                 this.$router.push("/zhseach");
             },
             //筛选数据
             ajaxCourseClassify(){
+                
+                  this.bus.$emit('loading', true);
                 this.$http.get("/api/app/courseClassify?").then((res)=>{
                     console.log(res);
                     this.attrclassify = res.data.data.appCourseType;
+                  
+                      // 关闭loading
+                    this.bus.$emit('loading', false);
+                    
                 })
+               
             },
             //筛选功能实现
             shaixuan(item){
@@ -209,19 +222,25 @@
             },
             // 获取下一页，填充到列表
             getnewlist() {
+                 this.bus.$emit('loading', true);
                 this.$http.get("/api/app/courseBasis?page=1&limit=10&").then((res)=>{
                     console.log(res);
                     let CourseList = res.data.data.list;
                     this.CourseList.push(...CourseList);
+                       // 关闭loading
+                    this.bus.$emit('loading', false);
                 })
             },
             toCourseD(item) {
+                 this.bus.$emit('loading', true);
                 // console.log(id);
                 this.$router.push({path:"/zhedit",
                     query:{
                         id:item.id,
                         type:item.course_type
                     }})
+                       // 关闭loading
+                    this.bus.$emit('loading', false);
                 this.$store.commit("setData",this.list)
             },
             onLoad() {
@@ -231,9 +250,8 @@
                         this.refreshing = false;
                     }
                     this.nowpage++;
-
                     this.getnewlist();
-                    this.loading = false;l
+                    this.loading = false;
 
                     if (this.CourseList.length >= 40) {
                         this.finished = true;

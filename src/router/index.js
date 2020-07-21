@@ -25,7 +25,7 @@ import qrgPracticeSerach from '@/views/Qrg/qrgPractice/qrgPracticeSerach'
 import qrgDry from '@/views/Qrg/qrgDry'
 import qrgTopic from '@/views/Qrg/qrgTopic'
 import qrgCalendar from '@/views/Qrg/qrgCalendar'
-
+import gredit from '@/views/Czp/gredit'
 
 
 const qrgMessage =()=>import('@/components/qrgMessage')
@@ -77,11 +77,15 @@ Vue.use(VueRouter)
 //   // which is lazy-loaded when the route is visited.
 //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
 // }
+
 const routes = [
     {
         path: '/Xl',
         name: 'Xl',
-        component: Xl
+        component: Xl,
+        meta:{
+            title:"首页"
+        }
     },
     {
         path: '/teacher',
@@ -97,7 +101,10 @@ const routes = [
 
         path: '/Xlrl',
         name: 'Xlrl',
-        component: Xlrl
+        component: Xlrl,
+        meta:{
+            title:"详情"
+        }
     }, 
 {
     path:'/qrgCodeLogin',
@@ -132,12 +139,18 @@ const routes = [
 {
     path:'/qrgCodeLogin',
     name:'qrgCodeLogin',
-    component:qrgCodeLogin
+    component:qrgCodeLogin,
+     meta:{
+        title:"登录"
+    },
 },
 {
     path:'/qrgBoarding',
     name:'qrgBoarding',
-    component:qrgBoarding
+    component:qrgBoarding,
+    meta:{
+        title:"验证码登录"
+    }
 },
 {
     path:'/qrgPassword',
@@ -153,7 +166,10 @@ const routes = [
     {
         path: '/Zh',
         name: 'Zh',
-        component: Zh
+        component: Zh,
+        meta:{
+            title:"课程"
+        }
     },
     {
         path: '/zhedit',
@@ -166,7 +182,12 @@ const routes = [
         component: Zhseach
 
       },
-    
+      
+      {
+          path:'/gredit',
+          name:'gredit',
+          component:gredit
+      },
 
     
     // {
@@ -179,6 +200,9 @@ const routes = [
         path: '/Sxl',
         name: 'Sxl',
         component: Sxl,
+        meta:{
+            title:"约课记录"
+        }
     },
     {
         path: '/sxl/SxlYdy',
@@ -194,10 +218,15 @@ const routes = [
         path: '/Czp',
         name: 'Czp',
         component: Czp,
+        
         children: [{
                 path: '/Czp/Czp_E1',
                 name: 'Czp_E1',
                 component: Czp_E1,
+                
+        meta:{
+            title:"个人中心"
+        },
             },
             {
                 path: '/',
@@ -206,7 +235,10 @@ const routes = [
             {
                 path: '/Czp/Czp_E2',
                 name: 'Czp_E2',
-                component: Czp_E2
+                component: Czp_E2,
+                meta:{
+                    title:"个人信息"
+                },
             },
 
 			{
@@ -232,7 +264,10 @@ const routes = [
 			{
 			    path: '/Czp/Czp_E10',
 			    name: 'Czp_E10',
-			    component: Czp_E10
+                component: Czp_E10,
+                meta:{
+                    title:"设置密码"
+                }
             },
             {
                 path: '/Czp/xg',
@@ -278,7 +313,10 @@ const routes = [
     {
         path: "/Qrg",
         name: 'Qrg',
-        component: Qrg
+        component: Qrg,
+        meta:{
+            title:"练习"
+        }
     },
     //考点陪练
     {
@@ -375,6 +413,13 @@ const routes = [
 const router = new VueRouter({
     routes
 })
+
+router.beforeEach((to,from,next)=>{
+    // console.log(to)
+    next()
+    document.title=to.meta.title
+})
+
 
 
 export default router

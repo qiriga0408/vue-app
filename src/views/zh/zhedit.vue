@@ -67,9 +67,8 @@
                  </li> -->
              </ul>
          </div>
-         <div class="div4">
-             立即报名
-         </div>
+        <footer  @click="hh()"   class="f" >立即报名</footer>
+         <footer  @click="hh()"  v-if=" this.isbuy==1" class="f" >立即学习</footer>
     </div>
 </template>
 <script>
@@ -78,6 +77,7 @@ export default {
     name:"Edit",
     data(){
         return{
+            id:"",
             // 这里是对象
 			obj:{},
             flag:"",
@@ -85,9 +85,10 @@ export default {
             // add:[]
             arr1:[],
             arr2:[],
+            isbuy:"",
             // 分享弹出框
              show: false,
-            //  initQCode: 'http://120.53.31.103:84/api/app/courseInfo/basis_id=108',
+              initQCode: 'http://120.53.31.103:84/api/app/courseInfo/basis_id=108'
             //  qcURL: {},
             //     config: "",
             //     arr: []
@@ -121,6 +122,22 @@ export default {
      created(){
          this.ajaxdetail();
          this.ajaxdetail2();
+
+           this.$axios.get(`http://120.53.31.103:84/api/app/courseInfo/basis_id=${this.id}`).then((res)=>{
+            console.log(res.data.data.info.is_buy)
+    this.isbuy=res.data.data.info.is_buy
+    console.log(this.isbuy)
+            // if(){
+         
+            // }
+        })
+                 if(this.isbuy==0){
+            this.$store.lj=true
+
+        }else{
+            // this.lj=false
+            this.$store.lj=false
+        }
 	 // 接受的是仓库的数据list
     //   var list=this.$route.query.id
     //   console.log(this.$route.query.course_type)
@@ -151,7 +168,9 @@ export default {
 			methods:{
                   showPopup() {
                       this.show = true;
-                     let id=this.$route.query.id;
+                 
+                     let id=this.$route.query.id;    
+                      this.id=id
                     let type=this.$route.query.type;
                     console.log(this.$route.query.id)
                     console.log(this.$route.query.type)
@@ -183,7 +202,31 @@ export default {
                 },
 				 send(){
 				this.$router.go(-1)
-			 },
+             },
+              hh(){ 
+
+         let id=this.$route.query.id
+        this.$http.post("api/app/order/downOrder", {
+          shop_id: id,
+          type: 5
+        }).then((res)=>{
+    console.log(res)
+
+         this.$axios.get(`http://120.53.31.103:84/api/app/courseInfo/basis_id=${id}`).then((res)=>{
+            console.log(res.data.data.info.is_buy)
+
+            // if(){
+         
+            // }
+        })
+      
+})
+
+
+
+       
+
+    },
 				 edit(){
 				// 将接收到的数据保存到变量obj中 
                 var obj={"id":this.add}
@@ -414,4 +457,15 @@ header{
     color: #fff;
     background: #EA7A2F;
 }
+    .f{
+        color: #fff;
+            text-align: center;
+            line-height: 0.84rem;
+            background: #eb6100 !important;
+                    font-family: PingFangSC-Medium;
+    font-weight: 400 !important;
+    height: 0.84rem !important;
+
+    font-size: 0.32rem;
+    }
 </style>

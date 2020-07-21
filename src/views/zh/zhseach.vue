@@ -74,7 +74,7 @@ export default {
         },
         //历l史记录
         ls(item){
-            console.log('111');
+            // console.log('111');
             this.test = item.name;
         }
     }
